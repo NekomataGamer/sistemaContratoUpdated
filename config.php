@@ -7,7 +7,7 @@ global $db;
 
 $config = array();
 if(ENVIRONMENT == 'development') {
-	define("BASE_URL", "http://localhost/contrato/");
+	define("BASE_URL", "http://localhost/grupoCoser/");
 	define("SMTP_MAIL", [
 		'host'=>'mail.altamenterentavel.com',
 		'port'=>'465',

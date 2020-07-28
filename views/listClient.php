@@ -32,10 +32,14 @@
   </thead>
   <tbody>
     <?php foreach($clientList as $item):?>
+        <?php 
+            $a = new Admin();
+            $dadosEmpresa = $a->getDadosEmpresa($item['id_empresa']);  
+        ?>
         <tr>
             <th scope="row"><?php echo $item['id'];?></th>
             <td><?php echo $item['nome']." ".$item['sobrenome'];?></td>
-            <td><?php echo $item['id_empresa'];?>(colocar nome da empresa)</td>
+            <td><?php echo $dadosEmpresa['nome_fant'];?></td>
             <td><?php echo $item['email'];?></td>
             <td>
                 <?php if($item['contrato_stat'] == 0):?>
