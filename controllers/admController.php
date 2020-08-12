@@ -31,6 +31,7 @@ class admController extends controller {
 
             $dados['admData'] = $a->getDadosAdm($id);
             $dados['empresasList'] = $a->getListEmpresas();
+            
 
             if(isset($_POST['nome']) && !empty($_POST['nome'])){
                 $nome = addslashes($_POST['nome']);
@@ -38,7 +39,9 @@ class admController extends controller {
                 $email = addslashes($_POST['email']);
                 $empresa = addslashes($_POST['empresa']);
 
-                if($a->addClientes($nome, $sobrenome, $email, $empresa)){
+                $tipo_contrato = addslashes($_POST['tipo_contrato']);
+
+                if($a->addClientes($nome, $sobrenome, $email, $tipo_contrato, $empresa)){
                     $dados['msg_info'] = array('success', 'Cliente Cadastrado Com Sucesso!');
                 }else{
                     $dados['msg_info'] = array('error', 'O E-mail já Está Cadastrado nesta empresa :/');
@@ -72,13 +75,14 @@ class admController extends controller {
                 if($a->editClient($nome, $sobrenome, $email, $ip_cliente, $cidade, $provedor, $navegador, $sistema_operac, $id_client, $empresa)){
                     $dados['msg_info'] = array('success', 'Cliente Editado Com Sucesso!');
                 }else{
-                    $dados['msg_info'] = array('error', 'O Sistema não ocnseguiu editar o cliente, verifique novamente os valores preenchidos.');
+                    $dados['msg_info'] = array('error', 'O Sistema não conseguiu editar o cliente, verifique novamente os valores preenchidos.');
                 }
             }
 
             $dados['admData'] = $a->getDadosAdm($id);
             $dados['clienteData'] = $a->getClientData($id_client);
             $dados['empresasList'] = $a->getListEmpresas();
+            $dados['contratosList'] = $a->getContratosFromCliente($id_client);
 
             $this->loadTemplate('editCliente', $dados);
         }else{
@@ -260,6 +264,22 @@ class admController extends controller {
             exit;
 
             // DOCUMENTAÇÃO    https://mpdf.github.io
+        }else{
+            header("Location: ".BASE_URL."adm/login");
+        }
+    }
+
+    public function buscaTiposContratos(){
+        if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
+            $dados = array();
+            $a = new Admin();
+
+            $id = $_SESSION['login_adm'];
+
+            $types = $a->getTiposContratos($_POST);
+
+            echo json_encode($types);
+
         }else{
             header("Location: ".BASE_URL."adm/login");
         }

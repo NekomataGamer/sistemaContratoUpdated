@@ -40,19 +40,11 @@ $db = new PDO("mysql:dbname=".$config['dbname'].";host=".$config['host'], $confi
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
 
-<!-- Bugs -->
-<!-- Loop de 404 em algumas paginas (Editar Cliente)-->
+<!-- adicionar novos contratos -->
+<!-- Remover Contratos -->
+<!-- Listar Contratos -->
+<!-- Enviar Contratos -->
 
-<!-- Precisa Fazer -->
-<!-- Máscara de campos, CPF, CNPJ, DATAS, TELEFONE -->
-<!-- Validação de NPJ, CPF -->
-<!-- Consulta de clientes (Ajax)-->
-<!-- Consulta de empresas (Ajax) -->
-<!-- Consulta de contratos (Ajax) -->
-<!-- Enviar email para o cliente com o link para visualisar e assinar o contrato -->
-<!-- Revisar Tudo -->
-
-<!-- RESOLVIDOS -->
-<!-- Visualização do contrato funcionar (adm/cliente) -->
-<!-- Id do contrato não está sendo enviado na lista de empresas (ao gerar contrato) RESOLVIDO -->
-<!-- Assinar Contrato -->
+<!-- Adicionar novos modelos de contrato -->
+<!-- Editar modelo de contrato -->
+<!-- Excluir modelo de contrato -->

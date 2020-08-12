@@ -17,11 +17,12 @@
 <?php elseif(isset($msg_info) && $msg_info[0] == 'error'):?>
     <div class="alert alert-danger"><?php echo $msg_info[1];?></div>
 <?php endif;?>
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 
 <div class="form-group">
     <label for="formGroupExampleInput" class="d-block">Empresa</label>
-    <select name="empresa" class="form-control">
+    <select name="empresa" class="form-control" id="empresa">
+      <option value="">Selecione Uma empresa</option>
       <?php foreach($empresasList as $item):?>
         <option value="<?php echo $item['id'];?>"><?php echo $item['nome_fant'];?></option>
       <?php endforeach;?>
@@ -42,8 +43,16 @@
     <label for="formGroupExampleInput2" class="d-block">E-mail</label>
     <input type="email" class="form-control" placeholder="Enter your lastname" name="email">
   </div>
+
+  <div class="form-group" id="meu_pau">
+    <label for="formGroupExampleInput2" class="d-block" id="">Tipo de Contrato</label>
+    <select name="tipo_contrato" id="tipo_contrato" class="form-control">
+      
+    </select>
+  </div>
   
 
   <button class="btn btn-primary" type="submit">Cadastrar</button>
   <button class="btn btn-secondary" type="cancel">Cancelar</button>
 </form>
+

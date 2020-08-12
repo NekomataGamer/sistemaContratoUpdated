@@ -19,7 +19,7 @@ class Admin extends model {
         }  
     }
 
-    public function addClientes($nome, $sobrenome, $email, $empresa){
+    public function addClientes($nome, $sobrenome, $email, $tipo_contrato, $empresa){
         $sql = "SELECT * FROM clientes WHERE email = :email AND id_empresa = :id_empresa";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':email', $email);
@@ -36,6 +36,10 @@ class Admin extends model {
             $sql->bindValue(':email', $email);
             $sql->bindValue(':id_empresa', $empresa);
             $sql->execute();
+
+            $id = $this->db->lastInsertId();
+
+            $this->gerarContrato($id, $empresa);
 
             return true;
         }
@@ -265,6 +269,37 @@ class Admin extends model {
         if($sql->rowCount() > 0){
             $array = $sql->fetch();
         }
+
+        return $array;
+    }
+
+    public function getTiposContratos($id_empresa){
+        // print_r($id_empresa);exit;
+        $array = array();
+        $sql = "SELECT * FROM contratos_models WHERE id_empresa = :id_empresa";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id_empresa', $id_empresa['id_empresa']);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $array = $sql->fetchAll();
+        }
+
+        return $array;
+    }
+
+    public function getContratosFromCliente($id_client){
+        $array = array();
+
+        $sql = "SELECT * FROM contratos WHERE id_cliente = :id_client";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id_client', $id_client);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $array = $sql->fechAll();
+        }
+
 
         return $array;
     }

@@ -165,7 +165,9 @@
         </div><!-- container -->
       </div>
     </div>
-
+    <script>
+      var BASE_URL = '<?php echo BASE_URL;?>';
+    </script>
     <script src="<?php echo BASE_URL;?>assets/lib/jquery/jquery.min.js"></script>
     <script src="<?php echo BASE_URL;?>assets//lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo BASE_URL;?>assets/lib/feather-icons/feather.min.js"></script>
@@ -185,5 +187,6 @@
     <!-- append theme customizer -->
     <script src="<?php echo BASE_URL;?>assets/lib/js-cookie/js.cookie.js"></script>
     <script src="<?php echo BASE_URL;?>assets/js/dashforge.settings.js"></script>
+    <script src="<?php echo BASE_URL;?>assets/js/script.js"></script>
   </body>
 </html>

@@ -20,3 +20,4 @@ class admController extends controller {
             header("Location: ".BASE_URL."adm/login");
         }
     }
+}
