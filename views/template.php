@@ -102,9 +102,9 @@
           </li>
 
           <li class="nav-item with-sub">
-            <a href="" class="nav-link"><i data-feather="user"></i> <span>Contrato</span></a>
+            <a href="" class="nav-link"><i data-feather="user"></i><span>Contrato</span></a>
             <ul>
-              <li><a href="<?php echo BASE_URL;?>adm/addContrato">Adicionar Contrato</a></li>
+              <li><a href="<?php echo BASE_URL;?>adm/addNewContrato">Adicionar Contrato</a></li>
               <li><a href="<?php echo BASE_URL;?>adm/listContratos">Lista de Contrato</a></li>
             </ul>
           </li>
@@ -186,7 +186,7 @@
 
     <!-- append theme customizer -->
     <script src="<?php echo BASE_URL;?>assets/lib/js-cookie/js.cookie.js"></script>
-    <script src="<?php echo BASE_URL;?>assets/js/dashforge.settings.js"></script>
+    <!-- <script src="<?php echo BASE_URL;?>assets/js/dashforge.settings.js"></script> -->
     <script src="<?php echo BASE_URL;?>assets/js/script.js"></script>
   </body>
 </html>

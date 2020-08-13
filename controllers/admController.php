@@ -238,6 +238,8 @@ class admController extends controller {
         }
     }
 
+    
+
     public function visualisarContrato($id_contrato){
         if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
             $dados = array();
@@ -280,6 +282,128 @@ class admController extends controller {
 
             echo json_encode($types);
 
+        }else{
+            header("Location: ".BASE_URL."adm/login");
+        }
+    }
+
+    public function addNewContrato(){
+        if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
+            $dados = array();
+            $a = new Admin();
+
+            if(isset($_POST['title']) && !empty($_POST['title'])){
+                $empresa = addslashes($_POST['empresa']);
+                $titulo = addslashes($_POST['title']);
+                $corpo = addslashes($_POST['corpo']);
+                $logo = $_FILES['logo'];
+
+                if($a->addNewContrato($empresa, $titulo, $corpo, $logo)){
+                    $dados['msg'] = "Contrato Adicionado";
+                }
+            }
+
+            $id = $_SESSION['login_adm'];
+            $dados['admData'] = $a->getDadosAdm($id);
+            $dados['listEmpresas'] = $a->getListEmpresas();
+
+            $this->loadTemplate('addModeloContrato', $dados);
+        }else{
+            header("Location: ".BASE_URL."adm/login");
+        }
+    }
+
+    public function addNewContratoToClient($id_client){
+        if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
+            $dados = array();
+            $a = new Admin();
+
+            if(isset($_POST['empresa']) && !empty($_POST['empresa'])){
+                $empresa = addslashes($_POST['empresa']);
+                $tipo_contrato = addslashes($_POST['tipo_contrato']);
+
+                if($a->addNewContratoToClient($empresa, $tipo_contrato, $id_client)){
+                    $dados['msg_info'] = array('success', 'Contrato adicionado e enviado!');
+                }else{
+                    $dados['msg_info'] = array('error', 'Ocorreu um erro inesperado');
+                }
+            }
+
+            $id = $_SESSION['login_adm'];
+            $dados['admData'] = $a->getDadosAdm($id);
+            $dados['empresasList'] = $a->getListEmpresas();
+            $dados['dadosCliente'] = $a->getClientData($id_client);
+
+            $this->loadTemplate('addContratoToClient', $dados);
+        }else{
+            header("Location: ".BASE_URL."adm/login");
+        }
+    }
+
+    public function listContratos(){
+        if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
+            $dados = array();
+            $a = new Admin();
+
+            
+
+            $id = $_SESSION['login_adm'];
+            $dados['admData'] = $a->getDadosAdm($id);
+            $dados['listContratos'] = $a->getListContratos();
+
+            $this->loadTemplate('listModelsContracts', $dados);
+        }else{
+            header("Location: ".BASE_URL."adm/login");
+        }
+    }
+
+    public function editarContratoModel($id_contrato){
+        if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
+            $dados = array();
+            $a = new Admin();
+
+            if(isset($_POST['title']) && !empty($_POST['title'])){
+                $empresa = addslashes($_POST['empresa']);
+                $titulo = addslashes($_POST['title']);
+                $corpo = addslashes($_POST['corpo']);
+                $logo = $_FILES['logo'];
+
+                if($a->editarContratoModel($empresa, $titulo, $corpo, $logo, $id_contrato)){
+                    $dados['msg_info'] = array(
+                        "success",
+                        "Modelo de contrato editado"
+                    );
+                }
+            }
+            
+            $id = $_SESSION['login_adm'];
+            $dados['admData'] = $a->getDadosAdm($id);
+            $dados['dadosContrato'] = $a->getDadosContratoModel($id_contrato);
+            $dados['listEmpresas'] = $a->getlistEmpresas();
+
+            $this->loadTemplate('editModelsContracts', $dados);
+        }else{
+            header("Location: ".BASE_URL."adm/login");
+        }
+    }
+
+    public function excluirContratoModel($id_contrato){
+        if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
+            $a = new Admin();
+
+            $a->excluirContratoModel($id_contrato);
+            header("Location: ".BASE_URL."adm/listContratos");
+        }else{
+            header("Location: ". BASE_URL."adm/login");
+        }
+    }
+
+    public function excluirContratoFromClient($id_contrato, $id_cliente){
+        if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
+            $a = new Admin();
+
+            $a->excluirContratoDoCliente($id_contrato);
+            header("Location: ".BASE_URL."adm/editarCliente/".$id_cliente);
         }else{
             header("Location: ".BASE_URL."adm/login");
         }

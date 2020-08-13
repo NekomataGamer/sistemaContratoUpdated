@@ -223,6 +223,19 @@ class Admin extends model {
         header("Location: ".BASE_URL."adm/listEmpresas/?name=".$dados['raz_soc']."&status=success");
     }
 
+    public function getListContratos(){
+        $array = array();
+
+        $sql = "SELECT * FROM contratos_models";
+        $sql = $this->db->query($sql);
+        
+        if($sql->rowCount() > 0){
+            $array = $sql->fetchAll();
+        }
+
+        return $array;
+    }
+
     public function gerarContrato($id_cliente, $id_empresa){
         // Pegando dados Necessários para inserir registro
         $dadosEmpresa = $this->getDadosEmpresa($id_empresa); //Dados da Empresa;
@@ -273,6 +286,21 @@ class Admin extends model {
         return $array;
     }
 
+    public function getDadosContratoModel($id_contrato){
+        $array = array();
+
+        $sql = "SELECT * FROM contratos_models WHERE id = :id";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id', $id_contrato);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $array = $sql->fetch();
+        }
+
+        return $array;
+    }
+
     public function getTiposContratos($id_empresa){
         // print_r($id_empresa);exit;
         $array = array();
@@ -291,17 +319,80 @@ class Admin extends model {
     public function getContratosFromCliente($id_client){
         $array = array();
 
-        $sql = "SELECT * FROM contratos WHERE id_cliente = :id_client";
+        $sql = "SELECT * FROM contratos WHERE id_cliente = :id_cliente";
         $sql = $this->db->prepare($sql);
-        $sql->bindValue(':id_client', $id_client);
+        $sql->bindValue(':id_cliente', $id_client);
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            $array = $sql->fechAll();
+            $array = $sql->fetchAll();
         }
-
-
+        
         return $array;
+    }
+    
+    public function addNewContrato($empresa, $titulo, $corpo, $logo){
+        $hash_logo = md5(rand(0, 9999999997999).rand(0,8347256805496)).'.png';
+        $u = new Uploader();
+
+        $sql = "INSERT INTO contratos_models SET id_empresa = :id_empresa, logo = :hash_logo, titulo = :titulo, contrato_txt = :contrato_txt";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':hash_logo', $hash_logo);
+        $sql->bindValue(':id_empresa', $empresa);
+        $sql->bindValue(':titulo', $titulo);
+        $sql->bindValue(':contrato_txt', $corpo);
+        $sql->execute();
+
+        $id = $this->db->lastInsertId();
+        $u->upload($logo, $id, 'post');
+
+        return true;
+    }
+
+    public function addNewContratoToClient($empresa, $tipo_contrato, $id_client){
+        $sql = "INSERT INTO contratos SET id_cliente = :id_cliente, id_empresa = :id_empresa, id_contrato = :id_contrato";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id_cliente', $id_client);
+        $sql->bindValue(':id_empresa', $empresa);
+        $sql->bindValue(':id_contrato', $tipo_contrato);
+        $sql->execute();
+
+        return true;
+    }
+
+    public function editarContratoModel($empresa, $titulo, $corpo, $logo, $id){
+        $sql = "UPDATE contratos_models SET id_empresa = :id_empresa, titulo = :titulo, contrato_txt = :contrato_txt WHERE id = :id";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id_empresa', $empresa);
+        $sql->bindValue(':titulo', $titulo);
+        $sql->bindValue(':contrato_txt', $corpo);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+        return true;
+    }
+
+    public function excluirContratoModel($id_contrato){
+        $sql = "DELETE FROM contratos_models WHERE id = :id";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id', $id_contrato);
+        $sql->execute();
+
+        $sql = "DELETE FROM contratos WHERE id_contrato = :id_contrato";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id_contrato', $id_contrato);
+        $sql->execute();
+
+        return true;
+    }
+
+    public function excluirContratoDoCliente($id_contrato){
+        $sql = "DELETE FROM contratos WHERE id = :id";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id', $id_contrato);
+        $sql->execute();
+
+        return true;
     }
 
     public function logout(){

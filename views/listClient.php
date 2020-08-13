@@ -42,16 +42,7 @@
             <td><?php echo $dadosEmpresa['nome_fant'];?></td>
             <td><?php echo $item['email'];?></td>
             <td>
-                <?php if($item['contrato_stat'] == 0):?>
-                    <a href="<?php echo BASE_URL."adm/gerarContrato/".$item['id']."/".$item['id_empresa'];?>" class="btn btn-warning">Gerar Contrato</a>
-                <?php elseif($item['contrato_stat'] == 1 || $item['contrato_stat'] == 2):?>
-                    <a href="<?php echo BASE_URL."adm/visualisarContrato/".$item['id_contrato'];?>" class="btn btn-success" target="_blank">Visualisar Contrato 
-                        <?php if($item['contrato_stat'] == 2):?>
-                            <strong>Assinado</strong>
-                        <?php endif;?>
-                    </a>
-                    
-                <?php endif;?>
+                <a href="<?php echo BASE_URL."adm/addNewContratoToClient/".$item['id'];?>" class="btn btn-success">Novo Contrato</a>
                 <a href="<?php echo BASE_URL."adm/editarCliente/".$item['id'];?>" class="btn btn-info">Editar</a>
                 <a href="<?php echo BASE_URL."adm/excluirCliente/".$item['id'];?>" class="btn btn-danger">Excluir</a>
             </td>

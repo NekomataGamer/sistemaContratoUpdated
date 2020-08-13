@@ -119,8 +119,54 @@
         <?php else:?>
             <input type="text" class="form-control" placeholder="sistema operacional" name="sistema_operac" value="">
         <?php endif;?>
-    </div>
+    </div>    
 
     <button class="btn btn-primary" type="submit">Editar</button>
     <button class="btn btn-secondary" type="cancel">Cancelar</button>
 </form>
+
+<h5 class="mg-b-10" style="margin-top: 30px;">Contratos do Cliente</h5>
+<hr>
+
+<table class="table table-dark table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Titulo Contrato</th>
+      <th scope="col">Nome Fantasia</th>
+      <th scope="col">Status</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php foreach($contratosList as $key => $val):?>
+    <?php 
+        $a = new Admin();
+        $dadosContrato = $a->getDadosContratoModel($val['id_contrato']);
+        $dadosEmpresa = $a->getDadosEmpresa($val['id_empresa']);
+    ?>
+        <tr>
+            <td><?php echo $item['id'];?></td>
+            <td><?php echo $dadosContrato['titulo'];?></td>
+            <td><?php echo $dadosEmpresa['nome_fant'];?></td>
+            <td>
+                <?php 
+                    switch($val['status_assin']){
+                        case 0:
+                            echo "<div class='alert alert-warning'>Não Assinado</div>";
+                        break;
+                        case 2:
+                            echo "<div class='alert alert-success'>Assinado</div>";
+                        break;
+                    }
+                ?>
+            </td>
+            <td>
+                <a href="<?php echo BASE_URL."adm/excluirContratoFromClient/".$val['id']."/".$clienteData['id'];?>" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+    <?php endforeach;?>
+  </tbody>
+</table>
+
+    
