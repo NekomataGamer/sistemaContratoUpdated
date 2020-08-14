@@ -6,34 +6,21 @@ global $config;
 global $db;
 
 $config = array();
+define("PATH_SITE", '../');
 if(ENVIRONMENT == 'development') {
 	define("BASE_URL", "http://localhost/grupoCoser/");
-	define("SMTP_MAIL", [
-		'host'=>'mail.altamenterentavel.com',
-		'port'=>'465',
-		'user'=>'alison@altamenterentavel.com',
-		'passwd'=>',G8IS)XGJ42I',
-		'from_name'=>'Grupo Coser',
-		'from_email'=>'originalalison@gmail.com'
-	]);
+	
 	$config['dbname'] = 'contrato';
 	$config['host'] = 'localhost';
 	$config['dbuser'] = 'root';
 	$config['dbpass'] = '';
 } else {
-	define("BASE_URL", "http://localhost/contrato/");
-	define("SMTP_MAIL", [
-		'host'=>'',
-		'port'=>'',
-		'user'=>'',
-		'passwd'=>'',
-		'from_name'=>'Grupo Coser',
-		'from_email'=>'oroginalalison@gmail.com'
-	]);
-	$config['dbname'] = 'altame51_coserSalvador';
+	define("BASE_URL", "http://cosersalvador.com/contrato/");
+	
+	$config['dbname'] = 'cosersal_contratos';
 	$config['host'] = 'localhost';
-	$config['dbuser'] = 'altame51_gCoser';
-	$config['dbpass'] = 'yN%8*(C^52$A';
+	$config['dbuser'] = 'cosersal_bucker';
+	$config['dbpass'] = '$_7RKD&xtaf=';
 }
 
 $db = new PDO("mysql:dbname=".$config['dbname'].";host=".$config['host'], $config['dbuser'], $config['dbpass']);

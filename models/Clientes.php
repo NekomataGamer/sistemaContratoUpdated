@@ -1,5 +1,5 @@
 <?php
-class Clientes extends model {
+class Clientes extends Model {
     public function getDadosContrato($id_contrato){
         $array = array();
 

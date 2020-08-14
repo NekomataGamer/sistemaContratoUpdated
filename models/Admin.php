@@ -1,5 +1,5 @@
 <?php
-class Admin extends model {
+class Admin extends Model {
 
 	public function login($email, $senha){
         $sql = "SELECT * FROM admin WHERE email = :email AND senha = :senha";
@@ -333,7 +333,6 @@ class Admin extends model {
     
     public function addNewContrato($empresa, $titulo, $corpo, $logo){
         $hash_logo = md5(rand(0, 9999999997999).rand(0,8347256805496)).'.png';
-        $u = new Uploader();
 
         $sql = "INSERT INTO contratos_models SET id_empresa = :id_empresa, logo = :hash_logo, titulo = :titulo, contrato_txt = :contrato_txt";
         $sql = $this->db->prepare($sql);
@@ -344,18 +343,38 @@ class Admin extends model {
         $sql->execute();
 
         $id = $this->db->lastInsertId();
-        $u->upload($logo, $id, 'post');
+
+
 
         return true;
     }
 
     public function addNewContratoToClient($empresa, $tipo_contrato, $id_client){
+        $e = new Email();
+
+        $dadosEmpresa = $this->getDadosEmpresa($empresa); //Dados da Empresa;
+        $dadosCliente = $this->getClientData($id_client); //Dados do cliente;
+
         $sql = "INSERT INTO contratos SET id_cliente = :id_cliente, id_empresa = :id_empresa, id_contrato = :id_contrato";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':id_cliente', $id_client);
         $sql->bindValue(':id_empresa', $empresa);
         $sql->bindValue(':id_contrato', $tipo_contrato);
         $sql->execute();
+        
+        $idContrato = $this->db->lastInsertId();
+
+        $linkAdm = BASE_URL."adm/visualisarContrato/".$idContrato;
+        $link = BASE_URL."home/clienteContrato/".$idContrato;
+
+        $sql = "UPDATE contratos SET link = :link, link_adm = :link_adm WHERE id = :id";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':link', $link);
+        $sql->bindValue(':link_adm', $linkAdm);
+        $sql->bindValue(':id', $idContrato);
+        $sql->execute();
+   
+        $e->enviar($dadosEmpresa, $dadosCliente, $tipo_contrato, $idContrato);
 
         return true;
     }

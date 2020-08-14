@@ -40,7 +40,7 @@
 
     <div class="form-group">
         <label for="formGroupExampleInput" class="d-block">Logo da empresa</label>
-        <input type="file" class="form-control" name="logo[]">
+        <input type="file" class="form-control" name="logo">
     </div>
     
   <button class="btn btn-primary" type="submit">Cadastrar</button>
