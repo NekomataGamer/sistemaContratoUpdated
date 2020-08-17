@@ -126,7 +126,8 @@ class Admin extends Model {
         return $array;
     }
     
-    public function addEmpresa($email_empresa, $raz_soc, $nome_fant, $cnpj){
+    public function addEmpresa($email_empresa, $raz_soc, $nome_fant, $cnpj, $logo){
+        $u = new Uploader();
         // Verifica se o email já está cadastrado;
         $sql = "SELECT id FROM empresas WHERE email = :email";
         $sql = $this->db->prepare($sql);
@@ -134,7 +135,7 @@ class Admin extends Model {
         $sql->execute();
 
         if($sql->rowCount() > 0){
-            echo "parou aqui"; exit;
+            
             return false;
         }else{
             // Se o email não estiver cadastrado, verifica se o cnpj já está cadastrado;
@@ -144,7 +145,7 @@ class Admin extends Model {
             $sql->execute();
 
             if($sql->rowCount() > 0){
-                echo "afff";exit;
+
                 return false;
             }else{
                 // caso todas condições estejam favoraveis, adiciona empresa;
@@ -156,6 +157,11 @@ class Admin extends Model {
                 $sql->bindValue(':cnpj', $cnpj);
                 $sql->bindValue(':contrato_stat', 0);
                 $sql->execute();
+
+                $idLEmpresa = $this->db->lastInsertId();
+
+                $u->upload($idLEmpresa, $logo);
+
                 
                 return true;
             }
@@ -376,7 +382,7 @@ class Admin extends Model {
    
         $e->enviar($dadosEmpresa, $dadosCliente, $tipo_contrato, $idContrato);
 
-        return true;
+        return $idContrato;
     }
 
     public function editarContratoModel($empresa, $titulo, $corpo, $logo, $id){

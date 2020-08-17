@@ -135,7 +135,9 @@ class admController extends Controller {
                $nome_fant = addslashes($_POST['nome_fant']);
                $cnpj = addslashes($_POST['cnpj']);
 
-               if($a->addEmpresa($email_empresa, $raz_soc, $nome_fant, $cnpj)){
+               $logo = (!empty($_FILES['logo']))?$_FILES['logo']:array();
+
+               if($a->addEmpresa($email_empresa, $raz_soc, $nome_fant, $cnpj, $logo)){
                     $dados['msg_info'] = array('success', 'Empresa Cadastrada Com Sucesso!');
                }else{
                     $dados['msg_info'] = array('error', 'O E-mail ou CNPJ já está cadastrado :/');
@@ -296,7 +298,6 @@ class admController extends Controller {
                 $empresa = addslashes($_POST['empresa']);
                 $titulo = addslashes($_POST['title']);
                 $corpo = addslashes($_POST['corpo']);
-                $logo = $_FILES['logo'];
 
                 if($a->addNewContrato($empresa, $titulo, $corpo, $logo)){
                     $dados['msg'] = "Contrato Adicionado";
@@ -322,7 +323,11 @@ class admController extends Controller {
                 $empresa = addslashes($_POST['empresa']);
                 $tipo_contrato = addslashes($_POST['tipo_contrato']);
 
-                if($a->addNewContratoToClient($empresa, $tipo_contrato, $id_client)){
+               
+
+                $contrato = $a->addNewContratoToClient($empresa, $tipo_contrato, $id_client);
+
+                if($contrato){
                     $dados['msg_info'] = array('success', 'Contrato adicionado e enviado!');
                 }else{
                     $dados['msg_info'] = array('error', 'Ocorreu um erro inesperado');
@@ -333,6 +338,7 @@ class admController extends Controller {
             $dados['admData'] = $a->getDadosAdm($id);
             $dados['empresasList'] = $a->getListEmpresas();
             $dados['dadosCliente'] = $a->getClientData($id_client);
+            
 
             $this->loadTemplate('addContratoToClient', $dados);
         }else{
@@ -428,5 +434,12 @@ class admController extends Controller {
         $a = new Admin();
 
         $a->logout();
+    }
+
+
+    public function teste(){
+        $dados = array();
+
+        $this->loadView('templateEmail', $dados);
     }
 }

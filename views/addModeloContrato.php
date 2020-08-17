@@ -37,12 +37,6 @@
         <label for="formGroupExampleInput" class="d-block">Corpo do Contrato</label>
         <textarea name="corpo" id="" cols="30" rows="10" class="form-control"></textarea>
     </div>
-
-    <div class="form-group">
-        <label for="formGroupExampleInput" class="d-block">Logo da empresa</label>
-        <input type="file" class="form-control" name="logo">
-    </div>
-    
   <button class="btn btn-primary" type="submit">Cadastrar</button>
   <button class="btn btn-secondary" type="cancel">Cancelar</button>
 </form>

@@ -18,7 +18,7 @@
     <div class="alert alert-danger"><?php echo $msg_info[1];?></div>
 <?php endif;?>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 <div class="form-group">
     <label for="formGroupExampleInput2" class="d-block">E-mail da Empresa</label>
     <input type="email" class="form-control" placeholder="Enter Email" name="email_empresa">
@@ -37,6 +37,11 @@
   <div class="form-group">
     <label for="formGroupExampleInput2" class="d-block">CNPJ</label>
     <input id="inputBlocks" type="text" class="form-control" placeholder="0000 000 000 0000" name="cnpj">
+  </div>
+
+  <div class="form-group">
+      <label for="formGroupExampleInput" class="d-block">Logo da empresa</label>
+      <input type="file" class="form-control" name="logo[]">
   </div>
 
   <button class="btn btn-primary" type="submit">Cadastrar</button>
