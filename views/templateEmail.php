@@ -17,7 +17,9 @@
     </head>
     <body>
        <h4> Olá, <?php echo $dadosCliente['nome']." ".$dadosCliente['sobrenome'];?></h4>
-       <p>É com prazer que nós dá <?php echo $dadosEmpresa['nome_fant'];?> lhe enviamos o contrato de <?php echo $dadosModeloContrato['titulo'];?>!</p>
+       <p>É com prazer que nós da <?php echo $dadosEmpresa['nome_fant'];?> lhe enviamos o contrato de <?php echo $dadosModeloContrato['titulo'];?>!</p>
        <a href="<?php echo $dadosContrato['link'];?>">Clique aqui</a>
+
+       <p>OBS: ESTE EMAIL É APENAS UM TESTE</p>
     </body>
 </html>

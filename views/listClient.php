@@ -17,7 +17,7 @@
 <?php endif;?>
 
 <?php if(isset($_GET['name'])):?>
-    <div class="alert alert-success">O cliente <?php echo $_GET['name'];?>, suas empresas e seus contratos foram excluidos com sucesso.</div>
+    <div class="alert alert-success">O cliente <?php echo $_GET['name'];?> foi excluido.</div>
 <?php endif;?>
 
 <table class="table table-dark table-striped table-hover">

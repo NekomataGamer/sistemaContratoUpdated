@@ -39,7 +39,8 @@ class Admin extends Model {
 
             $id = $this->db->lastInsertId();
 
-            $this->gerarContrato($id, $empresa);
+            $this->addNewContratoToClient($empresa, $tipo_contrato, $id);
+            // $this->gerarContrato($id, $empresa);
 
             return true;
         }
@@ -64,18 +65,6 @@ class Admin extends Model {
     }
 
     public function excluirCliente($id_cliente){
-        // Deletando Empresas do cliente
-        $sql = "DELETE FROM empresas WHERE id_cliente = :id_cliente";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(':id_cliente', $id_cliente);
-        $sql->execute();
-
-        // Deletando contratos do cliente
-        $sql = "DELETE FROM contratos WHERE id_cliente = :id_cliente";
-        $sql = $this->db->prepare($sql);
-        $sql->bindValue(':id_cliente', $id_cliente);
-        $sql->execute();
-
         // Pegando o nome e sobrenome do cliente
         $sql = "SELECT nome, sobrenome FROM clientes WHERE id = :id_cliente";
         $sql = $this->db->prepare($sql);

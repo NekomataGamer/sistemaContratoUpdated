@@ -24,7 +24,7 @@ class Email extends Model {
         $email = $dadosEmpresa['email'];
         $msg = 'esta é a msg do email';
         $para = $dadosCliente['email'];
-        $assunto = $dadosCliente['nome']."! Assine seu contrato da".$dadosEmpresa['nome_fant']." agora!";
+        $assunto = $dadosCliente['nome']."! Assine seu contrato da ".$dadosEmpresa['nome_fant']." agora!";
         
 
         $mail = new PHPMailer(true);
@@ -39,13 +39,17 @@ class Email extends Model {
                 $mail->Password   = 'dropthebass12';                                    
                 $mail->Port       =  465;
                 
-                $mail->setFrom('originalalison@gmail.com', 'Contato Alison Bucker');  // de onde é enviado 
+                $mail->setFrom($dadosEmpresa['email'], 'Contrato '.$dadosContrato['titulo']." - ".$dadosEmpresa['nome_fant']);  // de onde é enviado 
                 $mail->addAddress($para); // para onde é enviado administrador do sistema
                 $mail->isHTML(true);  // habilita  o uso do HTML
                 $mail->CharSet = 'UTF-8';
                 $mail->Subject = utf8_decode($assunto) ; //Assunto
                 $mail->Body = $corpo;  // corpo da mensagem
-                $mail->AltBody = $dados['dadosContrato'] = $dadosContrato." Copie e cole este link no seu navegador para acessar a pagina para assinatura do contrato.";  //para clientes sem suporte html
+                $mail->AltBody = "Copie e cole este link no seu navegador para acessar a página para assinatura do contrato. ".$dadosContrato['link'];  //para clientes sem suporte html
+
+                // $mail->SMTPDebug = 2;
+                // $mail->Debugoutput = 'html';
+                
                 if($mail->send()){
                     echo "Enviado";
                 }else{

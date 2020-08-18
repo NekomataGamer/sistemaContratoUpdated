@@ -299,7 +299,7 @@ class admController extends Controller {
                 $titulo = addslashes($_POST['title']);
                 $corpo = addslashes($_POST['corpo']);
 
-                if($a->addNewContrato($empresa, $titulo, $corpo, $logo)){
+                if($a->addNewContrato($empresa, $titulo, $corpo, array())){
                     $dados['msg'] = "Contrato Adicionado";
                 }
             }

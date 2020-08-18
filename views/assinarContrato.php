@@ -32,7 +32,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo BASE_URL;?>assets/img/favicon.png">
 
-    <title>Página Não Encontrada</title>
+    <title>Assinatura de Contrato</title>
 
     <!-- vendor css -->
     <link href="<?php echo BASE_URL;?>assets/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
