@@ -38,10 +38,28 @@ class admController extends Controller {
                 $sobrenome = addslashes($_POST['sobrenome']);
                 $email = addslashes($_POST['email']);
                 $empresa = addslashes($_POST['empresa']);
+                $nascimento = addslashes($_POST['nascimento']);
+                $telefone = addslashes($_POST['telefone']);
+                $celular = addslashes($_POST['celular']);
+                $cpf = addslashes($_POST['cpf']);
+                $rg = addslashes($_POST['rg']);
+                $ssp = addslashes($_POST['ssp']);
+                $profissao = addslashes($_POST['profissao']);
+                $nacionalidade = addslashes($_POST['nacionalidade']);
+                $estado_civil = addslashes($_POST['estado_civil']);
+                $curso = addslashes($_POST['curso']);
+                $cep = addslashes($_POST['cep']);
+                $rua = addslashes($_POST['rua']);
+                $numero = addslashes($_POST['numero']);
+                $bairro = addslashes($_POST['bairro']);
+                $complemento = addslashes($_POST['complemento']);
+                $edificio = addslashes($_POST['edificio']);
+                $cidade = addslashes($_POST['cidade']);
+                $uf = addslashes($_POST['uf']);
 
                 $tipo_contrato = addslashes($_POST['tipo_contrato']);
 
-                if($a->addClientes($nome, $sobrenome, $email, $tipo_contrato, $empresa)){
+                if($a->addClientes($nome, $sobrenome, $email, $empresa, $nascimento, $telefone, $celular, $cpf, $rg, $ssp, $profissao, $nacionalidade, $estado_civil, $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $cidade, $uf, $tipo_contrato)){
                     $dados['msg_info'] = array('success', 'Cliente Cadastrado Com Sucesso!');
                 }else{
                     $dados['msg_info'] = array('error', 'O E-mail já Está Cadastrado nesta empresa :/');
@@ -257,45 +275,47 @@ class admController extends Controller {
             $dados['dadosContrato'] = $dadosContrato;
             $dados['dadosModelContrato'] = $a->getDadosContratoModel($dadosContrato['id_contrato']);
             // 
-            ob_start();
 
             $this->loadView('contrato', $dados);
-            $html = ob_get_contents();
+            // ob_start();
 
-            ob_end_clean();
             // 
-            ob_start();
+            // $html = ob_get_contents();
 
-            $this->loadView('contratoCabec', $dados);
-            $cabec = ob_get_contents();
+            // ob_end_clean();
+            // // 
+            // ob_start();
 
-            ob_end_clean();
-            // 
-            ob_start();
+            // $this->loadView('contratoCabec', $dados);
+            // $cabec = ob_get_contents();
 
-            $this->loadView('contratoRodap', $dados);
-            $rodap = ob_get_contents();
+            // ob_end_clean();
+            // // 
+            // ob_start();
 
-            ob_end_clean();
+            // $this->loadView('contratoRodap', $dados);
+            // $rodap = ob_get_contents();
+
+            // ob_end_clean();
             
 
-            $mpdf = new \Mpdf\Mpdf([
-                'mode' => 'utf-8',
-                'format' => [190, 236],
-                'orientation' => 'P',
-                'setAutoTopMargin' => 'stretch'
-            ]);
-            $stylesheet = file_get_contents(BASE_URL.'assets/css/contractModel.css');
+            // $mpdf = new \Mpdf\Mpdf([
+            //     'mode' => 'utf-8',
+            //     'format' => [190, 236],
+            //     'orientation' => 'P',
+            //     'setAutoTopMargin' => 'stretch'
+            // ]);
+            // $stylesheet = file_get_contents(BASE_URL.'assets/css/contractModel.css');
             
            
-            $mpdf->SetHTMLHeader($cabec);
-            $mpdf->SetFooter($rodap);
+            // $mpdf->SetHTMLHeader($cabec);
+            // $mpdf->SetFooter($rodap);
             
-            $mpdf->WriteHTML($stylesheet, 1); // CSS Script goes here.
-            $mpdf->WriteHTML($html);
+            // $mpdf->WriteHTML($stylesheet, 1); // CSS Script goes here.
+            // $mpdf->WriteHTML($html);
 
-            $mpdf->Output('Contrato Absolute Christian', 'I');
-            exit;
+            // $mpdf->Output('Contrato Absolute Christian', 'I');
+            // exit;
 
             // DOCUMENTAÇÃO    https://mpdf.github.io
         }else{

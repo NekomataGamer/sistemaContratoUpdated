@@ -39,7 +39,7 @@ class Email extends Model {
                 $mail->Password   = 'dropthebass12';                                    
                 $mail->Port       =  465;
                 
-                $mail->setFrom($dadosEmpresa['email'], 'Contrato '.$dadosContrato['titulo']." - ".$dadosEmpresa['nome_fant']);  // de onde é enviado 
+                $mail->setFrom($dadosEmpresa['email'], 'Contrato '.$dados['dadosModeloContrato']['titulo']." - ".$dadosEmpresa['nome_fant']);  // de onde é enviado 
                 $mail->addAddress($para); // para onde é enviado administrador do sistema
                 $mail->isHTML(true);  // habilita  o uso do HTML
                 $mail->CharSet = 'UTF-8';

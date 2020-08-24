@@ -39,10 +39,103 @@
     <input type="text" class="form-control" placeholder="Enter your lastname" name="sobrenome">
   </div>
 
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Nascimento</label>
+    <input type="date" class="form-control" name="nascimento">
+  </div>
+
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Telefone</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="telefone">
+  </div>
+
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Celular</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="celular">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">CPF</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="cpf">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">RG</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="rg">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">SSP</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="ssp">
+  </div>
+  
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Profissão</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="profissao">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Nacionalidade</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="nacionalidade">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Estado Civil</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="estado_civil">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Curso</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="curso">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">CEP</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="cep">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Rua</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="rua">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Número</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="numero">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Bairro</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="bairro">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Complemento</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="complemento">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Edifício</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="edificio">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">Cidade</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="cidade">
+  </div>
+
+  <div class="form-group">
+    <label for="formGroupExampleInput2" class="d-block">UF</label>
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="uf">
+  </div>
+
   <div class="form-group">
     <label for="formGroupExampleInput2" class="d-block">E-mail</label>
     <input type="email" class="form-control" placeholder="Enter your lastname" name="email">
-  </div>
+  </div>  
 
   <div class="form-group" id="meu_pau">
     <label for="formGroupExampleInput2" class="d-block" id="">Tipo de Contrato</label>

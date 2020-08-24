@@ -19,21 +19,40 @@ class Admin extends Model {
         }  
     }
 
-    public function addClientes($nome, $sobrenome, $email, $tipo_contrato, $empresa){
-        $sql = "SELECT * FROM clientes WHERE email = :email AND id_empresa = :id_empresa";
+    public function addClientes($nome, $sobrenome, $email, $empresa, $nascimento, $telefone, $celular, $cpf, $rg, $ssp, $profissao, $nacionalidade, $estado_civil, 
+                    $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $cidade, $uf, $tipo_contrato){
+        $sql = "SELECT * FROM clientes WHERE email = :email";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':email', $email);
-        $sql->bindValue(':id_empresa', $empresa);
+        // $sql->bindValue(':id_empresa', $empresa);
         $sql->execute();
 
         if($sql->rowCount() > 0){
             return false;
         }else{
-            $sql = "INSERT INTO clientes SET nome = :nome, sobrenome = :sobrenome, email = :email, id_empresa = :id_empresa";
+            $sql = "INSERT INTO clientes SET nome = :nome, sobrenome = :sobrenome, email = :email, nascimento = :nascimento, telefone = :telefone, celular = :celular, cpf = :cpf, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, complemento = :complemento, edificio = :edificio, cidade = :cidade, curso = :curso, profissao = :profissao, rg = :rg, ssp = :ssp, uf = :uf, nacionalidade = :nacionalidade, estado_civil = :estado_civil, id_empresa = :id_empresa";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(':nome', $nome);
             $sql->bindValue(':sobrenome', $sobrenome);
             $sql->bindValue(':email', $email);
+            $sql->bindValue(':nascimento', $nascimento);
+            $sql->bindValue(':telefone', $telefone);
+            $sql->bindValue(':celular', $celular);
+            $sql->bindValue(':cpf', $cpf);
+            $sql->bindValue(':cep', $cep);
+            $sql->bindValue(':rua', $rua);
+            $sql->bindValue(':numero', $numero);
+            $sql->bindValue(':bairro', $bairro);
+            $sql->bindValue(':complemento', $complemento);
+            $sql->bindValue(':edificio', $edificio);
+            $sql->bindValue(':cidade', $cidade);
+            $sql->bindValue(':curso', $curso);
+            $sql->bindValue(':profissao', $profissao);
+            $sql->bindValue(':rg', $rg);
+            $sql->bindValue(':ssp', $ssp);
+            $sql->bindValue(':uf', $uf);
+            $sql->bindValue(':nacionalidade', $nacionalidade);
+            $sql->bindValue(':estado_civil', $estado_civil);
             $sql->bindValue(':id_empresa', $empresa);
             $sql->execute();
 
