@@ -37,7 +37,7 @@
     <!-- vendor css -->
     <link href="<?php echo BASE_URL;?>assets/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="<?php echo BASE_URL;?>assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="../../lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL;?>assets/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
 
     <!-- DashForge CSS -->
     <link rel="stylesheet" href="<?php echo BASE_URL;?>assets/css/dashforge.css">

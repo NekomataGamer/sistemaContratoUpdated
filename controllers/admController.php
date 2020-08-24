@@ -254,16 +254,46 @@ class admController extends Controller {
             $dados['admData'] = $a->getDadosAdm($id);
             $dados['dadosEmpresa'] = $a->getDadosEmpresa($dadosContrato['id_empresa']);
             $dados['dadosCliente'] = $a->getClientData($dadosContrato['id_cliente']);
-            
+            $dados['dadosContrato'] = $dadosContrato;
+            $dados['dadosModelContrato'] = $a->getDadosContratoModel($dadosContrato['id_contrato']);
+            // 
             ob_start();
 
             $this->loadView('contrato', $dados);
             $html = ob_get_contents();
 
             ob_end_clean();
+            // 
+            ob_start();
 
-            $mpdf = new \Mpdf\Mpdf();
+            $this->loadView('contratoCabec', $dados);
+            $cabec = ob_get_contents();
+
+            ob_end_clean();
+            // 
+            ob_start();
+
+            $this->loadView('contratoRodap', $dados);
+            $rodap = ob_get_contents();
+
+            ob_end_clean();
+            
+
+            $mpdf = new \Mpdf\Mpdf([
+                'mode' => 'utf-8',
+                'format' => [190, 236],
+                'orientation' => 'P',
+                'setAutoTopMargin' => 'stretch'
+            ]);
+            $stylesheet = file_get_contents(BASE_URL.'assets/css/contractModel.css');
+            
+           
+            $mpdf->SetHTMLHeader($cabec);
+            $mpdf->SetFooter($rodap);
+            
+            $mpdf->WriteHTML($stylesheet, 1); // CSS Script goes here.
             $mpdf->WriteHTML($html);
+
             $mpdf->Output('Contrato Absolute Christian', 'I');
             exit;
 

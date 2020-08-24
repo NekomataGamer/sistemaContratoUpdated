@@ -13,10 +13,10 @@ class Uploader extends Model {
             $type = $logo['type'][$q];
 
             if(in_array($type, $allwed_images)){
-                $this->addLogoEmpresa($idLEmpresa, $tmp_name, $type);
+                $filename = $this->addLogoEmpresa($idLEmpresa, $tmp_name, $type);
             }
         }
-
+        return $filename;
         exit;
     }
 
@@ -72,6 +72,8 @@ class Uploader extends Model {
             $filename = md5(rand(0, 99999999).rand(0,9999999995469)).'.png';
 
             imagejpeg($img, '../grupoCoser/contrato/logos/'.$filename, 100);
+
+            return $filename;
         }
     }
 }

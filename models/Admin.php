@@ -149,8 +149,15 @@ class Admin extends Model {
 
                 $idLEmpresa = $this->db->lastInsertId();
 
-                $u->upload($idLEmpresa, $logo);
+                $filename = $u->upload($idLEmpresa, $logo);
 
+                if(!empty($filename)){
+                    $sql = "UPDATE empresas SET logo = :logo WHERE id = :id";
+                    $sql = $this->db->prepare($sql);
+                    $sql->bindValue(':logo', $filename);
+                    $sql->bindValue(':id', $idLEmpresa);
+                    $sql->execute();
+                }
                 
                 return true;
             }
