@@ -271,7 +271,7 @@
             </td>
             <td>
                 <a href="<?php echo $val['link_adm'];?>" class="btn btn-info" >Visualisar</a>
-                <a href="<?php echo BASE_URL."adm/excluirContratoFromClient/".$val['id']."/".$clienteData['id'];?>" class="btn btn-danger">Excluir</a>
+                <a href="<?php echo BASE_URL."adm/excluirContratoFromClient/".$val['id']."/".$clienteData['id'];?>" class="btn btn-danger" onclick="return confirm('Deseja mesmo Excluir este contrato de cliente?');">Excluir</a>
             </td>
         </tr>
     <?php endforeach;?>

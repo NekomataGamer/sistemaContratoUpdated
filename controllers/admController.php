@@ -84,13 +84,28 @@ class admController extends Controller {
                 $sobrenome = addslashes($_POST['sobrenome']);
                 $email = addslashes($_POST['email']);
                 $empresa = addslashes($_POST['empresa']);
-                $ip_cliente = addslashes($_POST['ip_cliente']);
+                $nascimento = addslashes($_POST['nascimento']);
+                $telefone = addslashes($_POST['telefone']);
+                $celular = addslashes($_POST['celular']);
+                $cpf = addslashes($_POST['cpf']);
+                $rg = addslashes($_POST['rg']);
+                $ssp = addslashes($_POST['ssp']);
+                $profissao = addslashes($_POST['profissao']);
+                $nacionalidade = addslashes($_POST['nacionalidade']);
+                $estado_civil = addslashes($_POST['estado_civil']);
+                $curso = addslashes($_POST['curso']);
+                $cep = addslashes($_POST['cep']);
+                $rua = addslashes($_POST['rua']);
+                $numero = addslashes($_POST['numero']);
+                $bairro = addslashes($_POST['bairro']);
+                $complemento = addslashes($_POST['complemento']);
+                $edificio = addslashes($_POST['edificio']);
                 $cidade = addslashes($_POST['cidade']);
-                $provedor = addslashes($_POST['provedor']);
-                $navegador = addslashes($_POST['navegador']);
-                $sistema_operac = addslashes($_POST['sistema_operac']);
+                $uf = addslashes($_POST['uf']);
+                
 
-                if($a->editClient($nome, $sobrenome, $email, $ip_cliente, $cidade, $provedor, $navegador, $sistema_operac, $id_client, $empresa)){
+
+                if($a->editClient($nome, $sobrenome, $email, $cidade, $id_client, $empresa, $nascimento, $telefone, $celular, $cpf, $rg, $ssp, $profissao, $nacionalidade, $estado_civil, $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $uf)){
                     $dados['msg_info'] = array('success', 'Cliente Editado Com Sucesso!');
                 }else{
                     $dados['msg_info'] = array('error', 'O Sistema não conseguiu editar o cliente, verifique novamente os valores preenchidos.');

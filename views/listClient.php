@@ -44,7 +44,7 @@
             <td>
                 <a href="<?php echo BASE_URL."adm/addNewContratoToClient/".$item['id'];?>" class="btn btn-success">Novo Contrato</a>
                 <a href="<?php echo BASE_URL."adm/editarCliente/".$item['id'];?>" class="btn btn-info">Editar</a>
-                <a href="<?php echo BASE_URL."adm/excluirCliente/".$item['id'];?>" class="btn btn-danger">Excluir</a>
+                <a href="<?php echo BASE_URL."adm/excluirCliente/".$item['id'];?>" class="btn btn-danger" onclick="return confirm('Deseja mesmo Excluir este cliente?');">Excluir</a>
             </td>
         </tr>
     <?php endforeach;?>

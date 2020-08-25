@@ -65,19 +65,32 @@ class Admin extends Model {
         }
     }
 
-    public function editClient($nome, $sobrenome, $email, $ip_cliente, $cidade, $provedor, $navegador, $sistema_operac, $id_cliente, $empresa){
-        $sql = "UPDATE clientes SET nome = :nome, sobrenome = :sobrenome, email = :email, ip_cliente = :ip_cliente, cidade = :cidade, provedor = :provedor, navegador = :navegador, sistema_operac = :sistema_operac, id_empresa = :id_empresa WHERE id = :id_cliente";
-        $sql = $this->db->prepare($sql);
+    public function editClient($nome, $sobrenome, $email, $cidade, $id_client, $empresa, $nascimento, $telefone, $celular, $cpf, $rg, $ssp, $profissao, $nacionalidade, $estado_civil, $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $uf){
+                        // echo $id_client;exit;
+        $sql = "UPDATE clientes SET nome = :nome, sobrenome = :sobrenome, nascimento = :nascimento, telefone = :telefone, celular = :celular, cpf = :cpf, cep = :cep, rua = :rua, numero = :numero, bairro = :bairro, complemento = :complemento, edificio = :edificio, cidade = :cidade, email = :email, curso = :curso, profissao = :profissao, rg = :rg, ssp = :ssp, uf = :uf, nacionalidade = :nacionalidade, estado_civil = :estado_civil WHERE id = :id";
+        $sql = $this->db->prepare($sql);  
         $sql->bindValue(':nome', $nome);
-        $sql->bindValue(':sobrenome', $sobrenome);
-        $sql->bindValue(':email', $email);
-        $sql->bindValue(':ip_cliente', $ip_cliente);
+        $sql->bindValue(':sobrenome', $sobrenome);            
+        $sql->bindValue(':nascimento', $nascimento);
+        $sql->bindValue(':telefone', $telefone);
+        $sql->bindValue(':celular', $celular);
+        $sql->bindValue(':cpf', $cpf);
+        $sql->bindValue(':cep', $cep);
+        $sql->bindValue(':rua', $rua);
+        $sql->bindValue(':numero', $numero);
+        $sql->bindValue(':bairro', $bairro);
+        $sql->bindValue(':complemento', $complemento);
+        $sql->bindValue(':edificio', $edificio);
         $sql->bindValue(':cidade', $cidade);
-        $sql->bindValue(':provedor', $provedor);
-        $sql->bindValue(':navegador', $navegador);
-        $sql->bindValue(':sistema_operac', $sistema_operac);
-        $sql->bindValue(':id_empresa', $empresa);
-        $sql->bindValue(':id_cliente', $id_cliente);
+        $sql->bindValue(':email', $email);
+        $sql->bindValue(':curso', $curso);
+        $sql->bindValue(':profissao', $profissao);
+        $sql->bindValue(':rg', $rg);
+        $sql->bindValue(':ssp', $ssp);
+        $sql->bindValue(':uf', $uf);
+        $sql->bindValue(':nacionalidade', $nacionalidade);
+        $sql->bindValue(':estado_civil', $estado_civil);
+        $sql->bindValue(':id', $id_client);
         $sql->execute();
 
         return true;

@@ -43,7 +43,7 @@
               <?php endif;?> -->
               
               <a href="<?php echo BASE_URL."adm/editarEmpresa/".$item['id'];?>" class="btn btn-info">Editar</a>
-              <a href="<?php echo BASE_URL."adm/excluirEmpresa/".$item['id'];?>" class="btn btn-danger">Excluir</a>
+              <a href="<?php echo BASE_URL."adm/excluirEmpresa/".$item['id'];?>" class="btn btn-danger" onclick="return confirm('Deseja mesmo Excluir esta empresa?');">Excluir</a>
             </td>
         </tr>
     <?php endforeach;?>

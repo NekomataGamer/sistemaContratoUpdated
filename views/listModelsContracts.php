@@ -41,7 +41,7 @@
             <td><?php echo $dadosEmpresa['cnpj'];?></td>
             <td>
                 <a href="<?php echo BASE_URL."adm/editarContratoModel/".$item['id'];?>" class="btn btn-info">Editar</a>
-                <a href="<?php echo BASE_URL."adm/excluirContratoModel/".$item['id'];?>" class="btn btn-danger">Excluir</a>
+                <a href="<?php echo BASE_URL."adm/excluirContratoModel/".$item['id'];?>" class="btn btn-danger" onclick="return confirm('Deseja mesmo Excluir este Modelo de Contrato?');">Excluir</a>
             </td>
         </tr>
     <?php endforeach;?>
