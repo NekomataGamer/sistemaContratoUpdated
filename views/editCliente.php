@@ -199,7 +199,7 @@
         <?php endif;?>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="formGroupExampleInput2" class="d-block">Provedor</label>
 
         <?php if(isset($clienteData['provedor'])):?>
@@ -207,10 +207,10 @@
         <?php else:?>
             <input type="text" class="form-control" placeholder="provedor" name="provedor" value="" disabled>
         <?php endif;?>
-    </div>
+    </div> -->
 
     <div class="form-group">
-        <label for="formGroupExampleInput2" class="d-block">Navegador</label>
+        <label for="formGroupExampleInput2" class="d-block">Navegador/Sistema Operacional</label>
 
         <?php if(isset($clienteData['navegador'])):?>
             <input type="text" class="form-control" placeholder="navegador" name="navegador" value="<?php echo $clienteData['navegador'];?>" disabled>
@@ -219,7 +219,7 @@
         <?php endif;?>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="formGroupExampleInput2" class="d-block">Sistema Operacional</label>
 
         <?php if(isset($clienteData['sistema_operac'])):?>
@@ -227,7 +227,7 @@
         <?php else:?>
             <input type="text" class="form-control" placeholder="sistema operacional" name="sistema_operac" value="" disabled>
         <?php endif;?>
-    </div>    
+    </div>     -->
 
     <button class="btn btn-primary" type="submit">Editar</button>
     <button class="btn btn-secondary" type="cancel">Cancelar</button>
