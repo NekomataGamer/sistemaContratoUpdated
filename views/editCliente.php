@@ -254,7 +254,7 @@
         $dadosEmpresa = $a->getDadosEmpresa($val['id_empresa']);
     ?>
         <tr>
-            <td><?php echo $item['id'];?></td>
+            <td><?php echo $val['id'];?></td>
             <td><?php echo $dadosContrato['titulo'];?></td>
             <td><?php echo $dadosEmpresa['nome_fant'];?></td>
             <td>
@@ -264,12 +264,13 @@
                             echo "<div class='alert alert-warning'>Não Assinado</div>";
                         break;
                         case 2:
-                            echo "<div class='alert alert-success'>Assinado</div>";
+                            echo "<div class='alert alert-success'>Assinado em ".date('d/m/Y', strtotime($val['data_assinado']))." às ".date('H:i:s', strtotime($val['data_assinado']))."</div>";
                         break;
                     }
                 ?>
             </td>
             <td>
+                <a href="<?php echo $val['link_adm'];?>" class="btn btn-info" >Visualisar</a>
                 <a href="<?php echo BASE_URL."adm/excluirContratoFromClient/".$val['id']."/".$clienteData['id'];?>" class="btn btn-danger">Excluir</a>
             </td>
         </tr>

@@ -169,7 +169,7 @@
       var BASE_URL = '<?php echo BASE_URL;?>';
     </script>
     <script src="<?php echo BASE_URL;?>assets/lib/jquery/jquery.min.js"></script>
-    <script src="<?php echo BASE_URL;?>assets//lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo BASE_URL;?>assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo BASE_URL;?>assets/lib/feather-icons/feather.min.js"></script>
     <script src="<?php echo BASE_URL;?>assets/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="<?php echo BASE_URL;?>assets/lib/jquery.flot/jquery.flot.js"></script>
