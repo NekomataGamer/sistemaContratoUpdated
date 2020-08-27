@@ -58,8 +58,9 @@ class admController extends Controller {
                 $uf = addslashes($_POST['uf']);
 
                 $tipo_contrato = addslashes($_POST['tipo_contrato']);
+                $arquivo_contrato = $_FILES['arquivo_contrato'];
 
-                if($a->addClientes($nome, $sobrenome, $email, $empresa, $nascimento, $telefone, $celular, $cpf, $rg, $ssp, $profissao, $nacionalidade, $estado_civil, $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $cidade, $uf, $tipo_contrato)){
+                if($a->addClientes($nome, $sobrenome, $email, $empresa, $nascimento, $telefone, $celular, $cpf, $rg, $ssp, $profissao, $nacionalidade, $estado_civil, $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $cidade, $uf, $tipo_contrato, $arquivo_contrato)){
                     $dados['msg_info'] = array('success', 'Cliente Cadastrado Com Sucesso!');
                 }else{
                     $dados['msg_info'] = array('error', 'O E-mail já Está Cadastrado nesta empresa :/');
@@ -194,8 +195,9 @@ class admController extends Controller {
                 $raz_soc = addslashes($_POST['raz_soc']);
                 $nome_fant = addslashes($_POST['nome_fant']);
                 $cnpj = addslashes($_POST['cnpj']);
+                $email = addslashes($_POST['email']);
 
-                if($a->editarEmpresa($raz_soc, $nome_fant, $cnpj, $id_empresa)){
+                if($a->editarEmpresa($raz_soc, $nome_fant, $cnpj, $email, $id_empresa)){
                     $dados['msg_info'] = array('success', 'Empresa Editada Com Sucesso!');
                 }else{
                      $dados['msg_info'] = array('error', 'Ocorreu um erro que empediu a edição dos dados da empresa :/');
@@ -362,7 +364,7 @@ class admController extends Controller {
             if(isset($_POST['title']) && !empty($_POST['title'])){
                 $empresa = addslashes($_POST['empresa']);
                 $titulo = addslashes($_POST['title']);
-                $corpo = addslashes($_POST['corpo']);
+                $corpo = $_POST['corpo'];
 
                 if($a->addNewContrato($empresa, $titulo, $corpo, array())){
                     $dados['msg'] = "Contrato Adicionado";
@@ -436,7 +438,7 @@ class admController extends Controller {
             if(isset($_POST['title']) && !empty($_POST['title'])){
                 $empresa = addslashes($_POST['empresa']);
                 $titulo = addslashes($_POST['title']);
-                $corpo = addslashes($_POST['corpo']);
+                $corpo = $_POST['corpo'];
                 $logo = $_FILES['logo'];
 
                 if($a->editarContratoModel($empresa, $titulo, $corpo, $logo, $id_contrato)){

@@ -36,7 +36,7 @@
 
   <div class="form-group">
     <label for="formGroupExampleInput2" class="d-block">CNPJ</label>
-    <input id="inputBlocks" type="text" class="form-control" placeholder="0000 000 000 0000" name="cnpj">
+    <input id="inputBlocks" type="text" class="form-control cnpj" placeholder="00.000.000/0000-00" name="cnpj">
   </div>
 
   <div class="form-group">
@@ -47,3 +47,9 @@
   <button class="btn btn-primary" type="submit">Cadastrar</button>
   <button class="btn btn-secondary" type="cancel">Cancelar</button>
 </form>
+<script src="<?php echo BASE_URL;?>assets/lib/jquery/jquery.min.js"></script>
+<script src="<?php echo BASE_URL;?>assets/js/jquery.mask.js"></script>
+
+<script>
+  $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+</script>

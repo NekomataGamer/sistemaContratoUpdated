@@ -20,7 +20,7 @@ class Admin extends Model {
     }
 
     public function addClientes($nome, $sobrenome, $email, $empresa, $nascimento, $telefone, $celular, $cpf, $rg, $ssp, $profissao, $nacionalidade, $estado_civil, 
-                    $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $cidade, $uf, $tipo_contrato){
+                    $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $cidade, $uf, $tipo_contrato, $arquivo_contrato){
         $sql = "SELECT * FROM clientes WHERE email = :email";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':email', $email);
@@ -58,7 +58,7 @@ class Admin extends Model {
 
             $id = $this->db->lastInsertId();
 
-            $this->addNewContratoToClient($empresa, $tipo_contrato, $id);
+            $this->addNewContratoToClient($empresa, $tipo_contrato, $arquivo_contrato, $id);
             // $this->gerarContrato($id, $empresa);
 
             return true;
@@ -225,12 +225,13 @@ class Admin extends Model {
         return $array;
     }
 
-    public function editarEmpresa($raz_soc, $nome_fant, $cnpj, $id_empresa){
-        $sql = "UPDATE empresas SET raz_soc = :raz_soc, nome_fant = :nome_fant, cnpj = :cnpj WHERE id = :id";
+    public function editarEmpresa($raz_soc, $nome_fant, $cnpj, $email, $id_empresa){
+        $sql = "UPDATE empresas SET raz_soc = :raz_soc, nome_fant = :nome_fant, cnpj = :cnpj, email = :email WHERE id = :id";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':raz_soc', $raz_soc);
         $sql->bindValue(':nome_fant', $nome_fant);
         $sql->bindValue(':cnpj', $cnpj);
+        $sql->bindValue(':email', $email);
         $sql->bindValue(':id', $id_empresa);
         $sql->execute();
 
@@ -383,7 +384,7 @@ class Admin extends Model {
         return true;
     }
 
-    public function addNewContratoToClient($empresa, $tipo_contrato, $id_client){
+    public function addNewContratoToClient($empresa, $tipo_contrato, $arquivo_contrato, $id_client){
         $e = new Email();
 
         $dadosEmpresa = $this->getDadosEmpresa($empresa); //Dados da Empresa;
@@ -398,13 +399,21 @@ class Admin extends Model {
         
         $idContrato = $this->db->lastInsertId();
 
+        $nome = $arquivo_contrato['name'];
+        $tmp_name = $arquivo_contrato['tmp_name'];
+
+        $dir = __DIR__.'/../contrato/arquivos/'.$nome;
+
+        move_uploaded_file($tmp_name, $dir);
+
         $linkAdm = BASE_URL."adm/visualisarContrato/".$idContrato;
         $link = BASE_URL."home/clienteContrato/".$idContrato;
 
-        $sql = "UPDATE contratos SET link = :link, link_adm = :link_adm WHERE id = :id";
+        $sql = "UPDATE contratos SET link = :link, link_adm = :link_adm, arquivo = :arquivo WHERE id = :id";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':link', $link);
         $sql->bindValue(':link_adm', $linkAdm);
+        $sql->bindValue(':arquivo', $nome);
         $sql->bindValue(':id', $idContrato);
         $sql->execute();
    

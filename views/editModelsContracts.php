@@ -39,12 +39,15 @@
 
     <div class="form-group">
         <label for="formGroupExampleInput" class="d-block">Corpo do Contrato</label>
-        <?php if(isset($dadosContrato['contrato_txt'])):?>
-            <textarea name="corpo" id="" cols="30" rows="10" class="form-control"><?php echo $dadosContrato['contrato_txt'];?></textarea>
-        <?php else:?>
-            <textarea name="corpo" id="" cols="30" rows="10" class="form-control"></textarea>
-        <?php endif;?>
+        
+        <div id="editor" style="min-height: 400px;">
+                <?php echo (isset($dadosContrato['contrato_txt']))?$dadosContrato['contrato_txt']:''?>
+        </div>
+                <input type="hidden" id="campoHidden" name="corpo">
+        <div id="teste"></div>
     </div>
+
+    
 
     <div class="form-group">
         <label for="formGroupExampleInput" class="d-block">Logo da empresa</label>
@@ -55,3 +58,80 @@
   <button class="btn btn-secondary" type="cancel">Cancelar</button>
 </form>
 
+<script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+<!-- Theme included stylesheets -->
+<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+
+<!-- Core build with no theme, formatting, non-essential modules -->
+<link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet">
+<script src="//cdn.quilljs.com/1.3.6/quill.core.js"></script>
+
+<script>
+   
+
+    var options = {
+        debug: 'info',
+        modules: {
+            toolbar: '#toolbar'
+        },
+        placeholder: 'Compose an epic...',
+        readOnly: true,
+        theme: 'snow'
+    }
+    
+    var editor = new Quill('#editor', options);
+</script>
+
+
+<!-- Create the editor container -->
+
+
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script src="<?php echo BASE_URL;?>assets/lib/jquery/jquery.min.js"></script>
+
+<script>
+  var toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+
+  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+  [{ 'font': [] }],
+  [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }],
+
+  ['clean']                                         // remove formatting button
+];
+
+var quill = new Quill('#editor', {
+  modules: {
+    toolbar: toolbarOptions
+  },
+  theme: 'snow'
+});
+</script>
+
+<script>
+    
+    $('.ql-toolbar').on('mousemove', function(){
+        let campoHidden = $('#campoHidden').val(document.querySelector('form #editor .ql-editor').innerHTML);
+    });
+    $('#editor').on('keyup', function(){
+        let campoHidden = $('#campoHidden').val(document.querySelector('form #editor .ql-editor').innerHTML);
+    });
+
+    let campoHidden = $('#campoHidden').val(document.querySelector('form #editor .ql-editor').innerHTML);
+</script>

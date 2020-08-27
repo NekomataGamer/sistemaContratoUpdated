@@ -28,11 +28,11 @@
     <h5 class="mg-b-10">Dados da empresa</h5>
     <hr>
     <div class="form-group">
-        <label for="formGroupExampleInput" class="d-block">Nome do Cliente</label>
-        <?php if(isset($empresaData['id_cliente'])):?>
-            <input type="text" class="form-control" placeholder="Enter your firstname" name="nome" value="<?php echo $empresaData['id_cliente'];?>" disabled>
+        <label for="formGroupExampleInput" class="d-block">Email da Empresa</label>
+        <?php if(isset($empresaData['email'])):?>
+            <input type="text" class="form-control" placeholder="Enter your firstname" name="email" value="<?php echo $empresaData['email'];?>">
         <?php else:?>
-            <input type="text" class="form-control" placeholder="Enter your firstname" name="nome" value="">
+            <input type="text" class="form-control" placeholder="Enter your firstname" name="email" value="">
         <?php endif;?>
     </div>
 
@@ -60,9 +60,9 @@
         <label for="formGroupExampleInput2" class="d-block">cnpj</label>
 
         <?php if(isset($empresaData['cnpj'])):?>
-            <input type="text" class="form-control" placeholder="Enter your email" name="cnpj" value="<?php echo $empresaData['cnpj'];?>">
+            <input type="text" class="form-control cnpj" placeholder="Enter your email" name="cnpj" value="<?php echo $empresaData['cnpj'];?>">
         <?php else:?>
-            <input type="text" class="form-control" placeholder="Enter your email" name="cnpj" value="">
+            <input type="text" class="form-control cnpj" placeholder="Enter your email" name="cnpj" value="">
         <?php endif;?>
     </div>
 
@@ -71,3 +71,10 @@
     <button class="btn btn-primary" type="submit">Editar</button>
     <button class="btn btn-secondary" type="cancel">Cancelar</button>
 </form>
+
+<script src="<?php echo BASE_URL;?>assets/lib/jquery/jquery.min.js"></script>
+<script src="<?php echo BASE_URL;?>assets/js/jquery.mask.js"></script>
+
+<script>
+  $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+</script>

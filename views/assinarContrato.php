@@ -44,24 +44,7 @@
   </head>
   <body>
 
-    <header class="navbar navbar-header navbar-header-fixed">
-      <a href="" id="mainMenuOpen" class="burger-menu"><i data-feather="menu"></i></a>
-      <div class="navbar-brand">
-        <a href="<?php echo BASE_URL;?>" class="df-logo">dash<span>forge</span></a>
-      </div><!-- navbar-brand -->
-      <div id="navbarMenu" class="navbar-menu-wrapper">
-        <div class="navbar-menu-header">
-          <a href="../../index.html" class="df-logo">dash<span>forge</span></a>
-          <a id="mainMenuClose" href=""><i data-feather="x"></i></a>
-        </div><!-- navbar-menu-header -->
-        
-          
-          
-      </div><!-- navbar-menu-wrapper -->
-      <div class="navbar-right">
-       
-      </div><!-- navbar-right -->
-    </header><!-- navbar -->
+    
 
     <div class="content content-fixed content-auth-alt">
       <div class="container ht-100p tx-center">
@@ -74,7 +57,7 @@
           <h5 class="tx-16 tx-sm-18 tx-lg-20 tx-normal mg-b-20"></h5>
           <p class="tx-color-03 mg-b-30">Agradecemos a prioridade, esperamos dar nosso melhor no decorrer de nosso contrato!</p>
           <div class="d-flex mg-b-40">
-          <a href="<?php echo BASE_URL."home/visualisarContrato/".$dadosContrato['id'];?>" class="btn btn-info">Visualisar Contrato</a>
+          <a href="<?php echo BASE_URL."contrato/arquivos/".$dadosContrato['arquivo'];?>" class="btn btn-info">Visualisar Contrato</a>
           <?php if($dadosContrato['status_assin'] != 2):?>
               <a href="<?php echo BASE_URL."home/assinarContrato/".$dadosContrato['id'];?>" class="btn btn-success">Assinar Contrato</a>
           <?php endif;?>
@@ -85,17 +68,7 @@
       </div><!-- container -->
     </div><!-- content -->
 
-    <footer class="footer">
-      <div>
-        <span> </span>
-        <span> <a href=""></a></span>
-      </div>
-      <div>
-        <nav class="nav">
-          
-        </nav>
-      </div>
-    </footer>
+    
 
     <script src="<?php echo BASE_URL;?>assets/lib/jquery/jquery.min.js"></script>
     <script src="<?php echo BASE_URL;?>assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>

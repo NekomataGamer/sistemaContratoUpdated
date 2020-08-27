@@ -37,10 +37,10 @@
     <div class="form-group">
         <label for="formGroupExampleInput" class="d-block">Corpo do Contrato</label>
         
-        <div id="editor">
-                <h1>Olá</h1>
+        <div id="editor" style="min-height: 400px;">
+                
         </div>
-
+                <input type="hidden" id="campoHidden" name="corpo">
         <div id="teste"></div>
     </div>
   <button class="btn btn-primary" type="submit">Cadastrar</button>
@@ -111,4 +111,14 @@ var quill = new Quill('#editor', {
   },
   theme: 'snow'
 });
+</script>
+
+<script>
+    
+    $('.ql-toolbar').on('mousemove', function(){
+        let campoHidden = $('#campoHidden').val(document.querySelector('form #editor .ql-editor').innerHTML);
+    });
+    $('#editor').on('keyup', function(){
+        let campoHidden = $('#campoHidden').val(document.querySelector('form #editor .ql-editor').innerHTML);
+    });
 </script>
