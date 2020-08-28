@@ -33,12 +33,16 @@
   <div class="form-group" id="meu_pau">
     <label for="formGroupExampleInput2" class="d-block" id="">Tipo de Contrato</label>
     <select name="tipo_contrato" id="tipo_contrato" class="form-control">
-      
     </select>
+  </div>
+
+  <div class="form-group">
+      <label for="formGroupExampleInput" class="d-block">Arquivo de Contrato</label>
+      <input type="file" class="form-control" name="arquivo_contrato">
   </div>
   
 
-  <button class="btn btn-primary" type="submit">Cadastrar</button>
+  <button class="btn btn-primary" type="submit">Adicionar e Enviar</button>
   <button class="btn btn-secondary" type="cancel">Cancelar</button>
 </form>
 

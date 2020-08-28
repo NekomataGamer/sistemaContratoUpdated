@@ -31,6 +31,10 @@
         background-color: rgb(167, 17, 23);
         border-color: rgb(167, 17, 23);
       }
+
+      .table-dark thead{
+        background-color: rgb(167, 17, 23) !important;
+      }
     </style>
   </head>
   <body>

@@ -95,7 +95,7 @@
 
   <div class="form-group">
     <label for="formGroupExampleInput2" class="d-block">RG</label>
-    <input type="text" class="form-control rg" placeholder="Enter your lastname" name="rg" value="<?php echo (isset($clienteData['rg']))?$clienteData['rg']:''?>">
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="rg" value="<?php echo (isset($clienteData['rg']))?$clienteData['rg']:''?>">
   </div>
 
   <div class="form-group">
@@ -236,7 +236,7 @@
 <h5 class="mg-b-10" style="margin-top: 30px;">Contratos do Cliente</h5>
 <hr>
 
-<table class="table table-dark table-striped table-hover">
+<table class="table table-dark table-striped table-hover display" id="listContratosCliente">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -270,7 +270,7 @@
                 ?>
             </td>
             <td>
-                <a href="<?php echo $val['link_adm'];?>" class="btn btn-info" >Visualisar</a>
+                <a href="<?php echo BASE_URL."contrato/arquivos/".$val['arquivo'];?>" target="_blank" class="btn btn-info" >Visualisar</a>
                 <a href="<?php echo BASE_URL."adm/excluirContratoFromClient/".$val['id']."/".$clienteData['id'];?>" class="btn btn-danger" onclick="return confirm('Deseja mesmo Excluir este contrato de cliente?');">Excluir</a>
             </td>
         </tr>
@@ -411,6 +411,12 @@ else {
 })
     
 }
+</script>
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script>
+    
+    $('#listContratosCliente').DataTable();
 </script>
 
     

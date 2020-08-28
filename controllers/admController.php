@@ -154,6 +154,34 @@ class admController extends Controller {
         }
     }
 
+    public function buscaClientes(){
+        if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
+            $dados = array();
+            $a = new Admin();
+            $s = new Search();
+
+            $id = $_SESSION['login_adm'];
+
+            $dados['clientList'] = $a->getClientList();
+
+            $columns = array( 
+                0 =>'id', 
+                1 => 'nome',
+                2=> 'id_empresa',
+                17=>'email',
+                0=>'id'
+            );
+
+            $qt_clients = count($dados['clientList']);
+
+            
+
+            
+        }else{
+            header("Location: ".BASE_URL."adm/login");
+        }
+    }
+
     public function addEmpresa(){
         if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
             $dados = array();
@@ -294,47 +322,6 @@ class admController extends Controller {
             // 
 
             $this->loadView('contrato', $dados);
-            // ob_start();
-
-            // 
-            // $html = ob_get_contents();
-
-            // ob_end_clean();
-            // // 
-            // ob_start();
-
-            // $this->loadView('contratoCabec', $dados);
-            // $cabec = ob_get_contents();
-
-            // ob_end_clean();
-            // // 
-            // ob_start();
-
-            // $this->loadView('contratoRodap', $dados);
-            // $rodap = ob_get_contents();
-
-            // ob_end_clean();
-            
-
-            // $mpdf = new \Mpdf\Mpdf([
-            //     'mode' => 'utf-8',
-            //     'format' => [190, 236],
-            //     'orientation' => 'P',
-            //     'setAutoTopMargin' => 'stretch'
-            // ]);
-            // $stylesheet = file_get_contents(BASE_URL.'assets/css/contractModel.css');
-            
-           
-            // $mpdf->SetHTMLHeader($cabec);
-            // $mpdf->SetFooter($rodap);
-            
-            // $mpdf->WriteHTML($stylesheet, 1); // CSS Script goes here.
-            // $mpdf->WriteHTML($html);
-
-            // $mpdf->Output('Contrato Absolute Christian', 'I');
-            // exit;
-
-            // DOCUMENTAÇÃO    https://mpdf.github.io
         }else{
             header("Location: ".BASE_URL."adm/login");
         }
@@ -390,9 +377,10 @@ class admController extends Controller {
                 $empresa = addslashes($_POST['empresa']);
                 $tipo_contrato = addslashes($_POST['tipo_contrato']);
 
-               
 
-                $contrato = $a->addNewContratoToClient($empresa, $tipo_contrato, $id_client);
+               $arquivo_contrato = $_FILES['arquivo_contrato'];
+
+                $contrato = $a->addNewContratoToClient($empresa, $tipo_contrato, $arquivo_contrato, $id_client);
 
                 if($contrato){
                     $dados['msg_info'] = array('success', 'Contrato adicionado e enviado!');

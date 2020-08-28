@@ -399,7 +399,7 @@ class Admin extends Model {
         
         $idContrato = $this->db->lastInsertId();
 
-        $nome = $arquivo_contrato['name'];
+        $nome = md5(rand(0, 999999999).rand(5005, 68869869)).'.pdf';
         $tmp_name = $arquivo_contrato['tmp_name'];
 
         $dir = __DIR__.'/../contrato/arquivos/'.$nome;

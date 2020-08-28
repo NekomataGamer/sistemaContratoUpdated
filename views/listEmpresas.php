@@ -16,7 +16,7 @@
     <div class="alert alert-success">O contrato para a empresa <?php echo $_GET['nome'];?> já foi gerado e altomaticamente enviado para o email do cliente. <a href="<?php echo BASE_URL."adm/visualisarContrato/".$_GET['id'];?>">Clique aqui para visualisar</a></div>
 <?php endif;?>
 
-<table class="table table-dark table-striped table-hover">
+<table class="table table-dark table-striped table-hover display" id="listEmpresas">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -49,3 +49,12 @@
     <?php endforeach;?>
   </tbody>
 </table>
+
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script>
+    
+    $('#listEmpresas').DataTable();
+</script>

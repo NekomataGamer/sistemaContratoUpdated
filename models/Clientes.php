@@ -23,7 +23,7 @@ class Clientes extends Model {
         if($sql->rowCount() > 0){
             $dadosContrato = $sql->fetch();
 
-            $sql = "UPDATE contratos SET status_assin = :status_assin WHERE id = :id";
+            $sql = "UPDATE contratos SET status_assin = :status_assin, data_assinado = NOW() WHERE id = :id";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(':status_assin', 2);
             $sql->bindValue(':id', $id_contrato);

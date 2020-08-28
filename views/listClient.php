@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 <div class="container pd-x-0">
     <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
         <div>
@@ -20,8 +21,8 @@
     <div class="alert alert-success">O cliente <?php echo $_GET['name'];?> foi excluido.</div>
 <?php endif;?>
 
-<table class="table table-dark table-striped table-hover">
-  <thead>
+<table class="table table-dark table-striped table-hover display" id="listClients">
+   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nome</th>
@@ -30,7 +31,7 @@
       <th scope="col">Ações</th>
     </tr>
   </thead>
-  <tbody>
+ <tbody>
     <?php foreach($clientList as $item):?>
         <?php 
             $a = new Admin();
@@ -50,3 +51,11 @@
     <?php endforeach;?>
   </tbody>
 </table>
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script>
+    
+    $('#listClients').DataTable();
+</script>

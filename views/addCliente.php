@@ -64,7 +64,7 @@
 
   <div class="form-group">
     <label for="formGroupExampleInput2" class="d-block">RG</label>
-    <input type="text" class="form-control rg" placeholder="Enter your lastname" name="rg">
+    <input type="text" class="form-control" placeholder="Enter your lastname" name="rg">
   </div>
 
   <div class="form-group">
