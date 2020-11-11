@@ -137,6 +137,14 @@
     <input type="email" class="form-control" placeholder="Enter your lastname" name="email">
   </div>  
 
+    <div class="form-group">
+        <label for="formGroupExampleInput" class="d-block">Retorno</label>
+        <select name="retorno_contrato" class="form-control">
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+        </select>
+    </div>
+
   <div class="form-group">
       <label for="formGroupExampleInput" class="d-block">Arquivo de Contrato</label>
       <input type="file" class="form-control" name="arquivo_contrato">

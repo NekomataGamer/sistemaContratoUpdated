@@ -42,6 +42,38 @@ class Clientes extends Model {
         }
     }
 
+    public function assinarEEnviarContratoComRetorno($id_contrato, $retorno_documento){
+        $u = new Uploader();
+
+        $sql = "SELECT * FROM contratos WHERE id = :id";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':id', $id_contrato);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $dadosContrato = $sql->fetch();
+            $documento = $u->uploadPDF($retorno_documento);
+
+            $sql = "UPDATE contratos SET status_assin = :status_assin, arquivo_retornado = :arquivo_retornado, data_assinado = NOW() WHERE id = :id";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(':status_assin', 2);
+            $sql->bindValue(':id', $id_contrato);
+            $sql->bindValue(':arquivo_retornado', $documento);
+            $sql->execute();
+
+            $sql = "UPDATE clientes SET contrato_stat = :contrato_stat WHERE id = :id";
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(':contrato_stat', 2);
+            $sql->bindValue(':id', $dadosContrato['id_cliente']);
+            $sql->execute();
+
+            $this->atualizarClienteRemoto($id_contrato);
+
+            return true;
+
+        }
+    }
+
     public function atualizarClienteRemoto($id_contrato){
         $dadosContrato = $this->getDadosContrato($id_contrato);
 

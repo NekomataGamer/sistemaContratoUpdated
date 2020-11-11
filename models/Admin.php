@@ -20,7 +20,7 @@ class Admin extends Model {
     }
 
     public function addClientes($nome, $sobrenome, $email, $empresa, $nascimento, $telefone, $celular, $cpf, $rg, $ssp, $profissao, $nacionalidade, $estado_civil, 
-                    $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $cidade, $uf, $tipo_contrato, $arquivo_contrato){
+                    $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $cidade, $uf, $tipo_contrato, $arquivo_contrato, $retorno){
         $sql = "SELECT * FROM clientes WHERE email = :email";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':email', $email);
@@ -58,7 +58,8 @@ class Admin extends Model {
 
             $id = $this->db->lastInsertId();
 
-            $this->addNewContratoToClient($empresa, $tipo_contrato, $arquivo_contrato, $id);
+            $this->addNewContratoToClient($empresa, $tipo_contrato, $arquivo_contrato, $id, $retorno);
+
             // $this->gerarContrato($id, $empresa);
 
             return true;
@@ -384,7 +385,7 @@ class Admin extends Model {
         return true;
     }
 
-    public function addNewContratoToClient($empresa, $tipo_contrato, $arquivo_contrato, $id_client){
+    public function addNewContratoToClient($empresa, $tipo_contrato, $arquivo_contrato, $id_client, $retorno){
         $e = new Email();
 
         $dadosEmpresa = $this->getDadosEmpresa($empresa); //Dados da Empresa;
@@ -407,7 +408,7 @@ class Admin extends Model {
         move_uploaded_file($tmp_name, $dir);
 
         $linkAdm = BASE_URL."adm/visualisarContrato/".$idContrato;
-        $link = BASE_URL."home/clienteContrato/".$idContrato;
+        $link = BASE_URL."home/clienteContratoRetorno/".$idContrato;
 
         $sql = "UPDATE contratos SET link = :link, link_adm = :link_adm, arquivo = :arquivo WHERE id = :id";
         $sql = $this->db->prepare($sql);

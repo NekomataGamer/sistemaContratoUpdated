@@ -28,6 +28,23 @@ class homeController extends Controller {
         $this->loadView('assinarContrato', $dados);
     }
 
+    public function clienteContratoRetorno($id_contrato){
+        $dados = array();
+
+        $a = new Admin();
+        $c = new Clientes();
+
+        $dados['dadosContrato'] = $a->getDadosContrato($id_contrato);
+
+        
+            if(isset($_FILES['retorno_documento'])){
+                $c->assinarEEnviarContratoComRetorno($id_contrato, $_FILES['retorno_documento']);
+            }
+        
+        
+        $this->loadView('contratoRetornado/assinarComRetorno', $dados);
+    }
+
     public function visualisarContrato($id_contrato){
         $dados = array();
         $c = new Clientes();

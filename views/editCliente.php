@@ -271,6 +271,9 @@
             </td>
             <td>
                 <a href="<?php echo BASE_URL."contrato/arquivos/".$val['arquivo'];?>" target="_blank" class="btn btn-info" >Visualisar</a>
+                <?php if(isset($val['arquivo_retornado'])):?>
+                  <a href="<?php echo BASE_URL."contrato/arquivos/".$val['arquivo_retornado'];?>" target="_blank" class="btn btn-success" >Visualisar Retorno</a>
+                <?php endif;?>
                 <a href="<?php echo BASE_URL."adm/excluirContratoFromClient/".$val['id']."/".$clienteData['id'];?>" class="btn btn-danger" onclick="return confirm('Deseja mesmo Excluir este contrato de cliente?');">Excluir</a>
             </td>
         </tr>

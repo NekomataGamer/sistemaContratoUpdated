@@ -57,10 +57,12 @@ class admController extends Controller {
                 $cidade = addslashes($_POST['cidade']);
                 $uf = addslashes($_POST['uf']);
 
+                $retorno = addslashes($_POST['retorno_contrato']);
+
                 $tipo_contrato = addslashes($_POST['tipo_contrato']);
                 $arquivo_contrato = $_FILES['arquivo_contrato'];
 
-                if($a->addClientes($nome, $sobrenome, $email, $empresa, $nascimento, $telefone, $celular, $cpf, $rg, $ssp, $profissao, $nacionalidade, $estado_civil, $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $cidade, $uf, $tipo_contrato, $arquivo_contrato)){
+                if($a->addClientes($nome, $sobrenome, $email, $empresa, $nascimento, $telefone, $celular, $cpf, $rg, $ssp, $profissao, $nacionalidade, $estado_civil, $curso, $cep, $rua, $numero, $bairro, $complemento, $edificio, $cidade, $uf, $tipo_contrato, $arquivo_contrato, $retorno)){
                     $dados['msg_info'] = array('success', 'Cliente Cadastrado Com Sucesso!');
                 }else{
                     $dados['msg_info'] = array('error', 'O E-mail já Está Cadastrado nesta empresa :/');
@@ -377,10 +379,11 @@ class admController extends Controller {
                 $empresa = addslashes($_POST['empresa']);
                 $tipo_contrato = addslashes($_POST['tipo_contrato']);
 
+                $retorno = addslashes($_POST['retorno_contrato']);
+                
+                $arquivo_contrato = $_FILES['arquivo_contrato'];
 
-               $arquivo_contrato = $_FILES['arquivo_contrato'];
-
-                $contrato = $a->addNewContratoToClient($empresa, $tipo_contrato, $arquivo_contrato, $id_client);
+                $contrato = $a->addNewContratoToClient($empresa, $tipo_contrato, $arquivo_contrato, $id_client, $retorno);
 
                 if($contrato){
                     $dados['msg_info'] = array('success', 'Contrato adicionado e enviado!');

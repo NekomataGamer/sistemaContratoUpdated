@@ -20,6 +20,16 @@ class Uploader extends Model {
         exit;
     }
 
+    public function uploadPDF($documento){
+        $nome = md5(rand(0, 999999999).rand(5005, 68869869)).'.pdf';
+        $tmp_name = $documento['tmp_name'];
+
+        $dir = __DIR__.'/../contrato/arquivos/'.$nome;
+
+        move_uploaded_file($tmp_name, $dir);
+        return $nome;
+    }
+
     private function addLogoEmpresa($idLEmpresa, $tmp_name, $type){
         if($type == 'image/jpg' || $type == 'image/jpeg'){
             $o_img = imagecreatefromjpg($tmp_name);

@@ -32,11 +32,11 @@ class Email extends Model {
         try {
             // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //debugação de codigo util para achar erros
                 $mail->isSMTP();                                            
-                $mail->Host       = 'mail.cosersalvador.com';                    
+                $mail->Host       = 'mail.acu.education';                    
                 $mail->SMTPAuth   = true;    
                 $mail->SMTPSecure = 'ssl';                               
-                $mail->Username   = 'alisonbucker@cosersalvador.com';                     
-                $mail->Password   = 'dropthebass12';                                    
+                $mail->Username   = 'izabela@acu.education';                     
+                $mail->Password   = 'hp]ei{E&ZV+Y';                                    
                 $mail->Port       =  465;
                 
                 $mail->setFrom($dadosEmpresa['email'], 'Contrato '.$dados['dadosModeloContrato']['titulo']." - ".$dadosEmpresa['nome_fant']);  // de onde é enviado 
