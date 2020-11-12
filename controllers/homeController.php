@@ -36,10 +36,10 @@ class homeController extends Controller {
 
         $dados['dadosContrato'] = $a->getDadosContrato($id_contrato);
 
-        
-            if(isset($_FILES['retorno_documento'])){
-                $c->assinarEEnviarContratoComRetorno($id_contrato, $_FILES['retorno_documento']);
-            }
+        if(isset($_FILES['retorno_documento'])){
+            $c->assinarEEnviarContratoComRetorno($id_contrato, $_FILES['retorno_documento']);
+        }
+        $dados['dadosContrato'] = $a->getDadosContrato($id_contrato);
         
         
         $this->loadView('contratoRetornado/assinarComRetorno', $dados);
