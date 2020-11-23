@@ -39,6 +39,7 @@ class homeController extends Controller {
         if(isset($_FILES['retorno_documento'])){
             $c->assinarEEnviarContratoComRetorno($id_contrato, $_FILES['retorno_documento']);
         }
+        
         $dados['dadosContrato'] = $a->getDadosContrato($id_contrato);
         
         

@@ -133,11 +133,16 @@ class Admin extends Model {
         return $array;
     }
 
-    public function getClientList(){
+    public function getClientList($limit = 0){
         $array = array();
 
-        $sql = "SELECT * FROM clientes";
-        $sql = $this->db->query($sql);
+        if($limit == 0){
+            $sql = "SELECT * FROM clientes";
+            $sql = $this->db->query($sql);
+        }elseif($limit > 0){
+            $sql = "SELECT * FROM clientes ORDER BY id DESC LIMIT $limit";
+            $sql = $this->db->query($sql);
+        }
 
         if($sql->rowCount() > 0){
             $array = $sql->fetchAll();
@@ -408,7 +413,12 @@ class Admin extends Model {
         move_uploaded_file($tmp_name, $dir);
 
         $linkAdm = BASE_URL."adm/visualisarContrato/".$idContrato;
-        $link = BASE_URL."home/clienteContratoRetorno/".$idContrato;
+        
+        if($retorno == 0){
+            $link = BASE_URL."home/clienteContrato/".$idContrato;
+        }elseif($retorno == 1){
+            $link = BASE_URL."home/clienteContratoRetorno/".$idContrato;
+        }
 
         $sql = "UPDATE contratos SET link = :link, link_adm = :link_adm, arquivo = :arquivo WHERE id = :id";
         $sql = $this->db->prepare($sql);
@@ -475,5 +485,27 @@ class Admin extends Model {
             $array = $sql->fetch();
         }
         return $array;
+    }
+
+    public function getContratosNaoAssinados(){
+        $sql = "SELECT COUNT(*) as c FROM contratos WHERE status_assin = :status_assin";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':status_assin', 0);
+        $sql->execute();
+
+        $c = $sql->fetch();
+        $c['c'];
+
+        return $c;
+    }
+
+    public function getAllContratos(){
+        $sql = "SELECT COUNT(*) as c FROM contratos";
+        $sql = $this->db->query($sql);
+
+        $c = $sql->fetch();
+        $c['c'];
+
+        return $c;
     }
 }

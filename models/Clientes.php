@@ -3,6 +3,8 @@ class Clientes extends Model {
     public function getDadosContrato($id_contrato){
         $array = array();
 
+        
+
         $sql = "SELECT * FROM contratos WHERE id = :id";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':id', $id_contrato);
@@ -15,6 +17,8 @@ class Clientes extends Model {
         return $array;
     }
     public function assinarContrato($id_contrato){
+        $n = new Notifications();
+
         $sql = "SELECT * FROM contratos WHERE id = :id";
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':id', $id_contrato);
@@ -36,6 +40,8 @@ class Clientes extends Model {
             $sql->execute();
 
             $this->atualizarClienteRemoto($id_contrato);
+            
+            $n->saveNotification($dadosContrato, $id_contrato);
 
             return true;
 
@@ -44,6 +50,8 @@ class Clientes extends Model {
 
     public function assinarEEnviarContratoComRetorno($id_contrato, $retorno_documento){
         $u = new Uploader();
+
+        $n = new Notifications();
 
         $sql = "SELECT * FROM contratos WHERE id = :id";
         $sql = $this->db->prepare($sql);
@@ -68,6 +76,7 @@ class Clientes extends Model {
             $sql->execute();
 
             $this->atualizarClienteRemoto($id_contrato);
+            $n->saveNotification($dadosContrato, $id_contrato);
 
             return true;
 

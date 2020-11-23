@@ -11,10 +11,20 @@ class admController extends Controller {
         if(isset($_SESSION['login_adm']) && !empty($_SESSION['login_adm'])){
             $dados = array();
             $a = new Admin();
+            $n = new Notifications();
 
             $id = $_SESSION['login_adm'];
 
             $dados['admData'] = $a->getDadosAdm($id);
+
+            $dados['newClients'] = $a->getClientList(7);
+            $dados['notifications'] = $n->getNotifications(10);
+            $dados['wait'] = $a->getContratosNaoAssinados();
+            $dados['todosContratos'] = $a->getAllContratos();
+
+            // echo '<pre>';
+            // print_r($dados['notifications']);
+            
 
             $this->loadTemplate('dash', $dados);
         }else{

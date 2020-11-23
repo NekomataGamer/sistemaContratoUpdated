@@ -35,8 +35,8 @@ class Email extends Model {
                 $mail->Host       = 'mail.acu.education';                    
                 $mail->SMTPAuth   = true;    
                 $mail->SMTPSecure = 'ssl';                               
-                $mail->Username   = 'izabela@acu.education';                     
-                $mail->Password   = 'hp]ei{E&ZV+Y';                                    
+                $mail->Username   = 'documents@acu.education';                     
+                $mail->Password   = 'RU(T}X=DwRW}';                                    
                 $mail->Port       =  465;
                 
                 $mail->setFrom($dadosEmpresa['email'], 'Contrato '.$dados['dadosModeloContrato']['titulo']." - ".$dadosEmpresa['nome_fant']);  // de onde é enviado 
