@@ -19,6 +19,7 @@ class admController extends Controller {
 
             $dados['newClients'] = $a->getClientList(7);
             $dados['notifications'] = $n->getNotifications(10);
+            $dados['assinados'] = $a->getContratosAssinados();
             $dados['wait'] = $a->getContratosNaoAssinados();
             $dados['todosContratos'] = $a->getAllContratos();
 

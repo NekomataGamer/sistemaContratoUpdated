@@ -24,7 +24,7 @@
       <th scope="col">Razão Social</th>
       <th scope="col">Nome Fantasia</th>
       <th scope="col">CNPJ</th>
-      <th scope="col">Ações</th>
+      <th scope="col" width='100px'>Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -42,8 +42,9 @@
                 <a href="<?php echo BASE_URL."adm/visualisarContrato/".$item['id'];?>" class="btn btn-success">Visualisar Contrato</a>
               <?php endif;?> -->
               
-              <a href="<?php echo BASE_URL."adm/editarEmpresa/".$item['id'];?>" class="btn btn-info">Editar</a>
-              <a href="<?php echo BASE_URL."adm/excluirEmpresa/".$item['id'];?>" class="btn btn-danger" onclick="return confirm('Deseja mesmo Excluir esta empresa?');">Excluir</a>
+              <a href="<?php echo BASE_URL."adm/editarEmpresa/".$item['id'];?>" > <i style="color:#444;" data-feather="edit"></i> </a>
+              <a href="<?php echo BASE_URL."adm/excluirEmpresa/".$item['id'];?>"  onclick="return confirm('Deseja mesmo Excluir esta empresa?');"> <i style="color:#ff0000;" data-feather="trash-2"></i> </a>
+              
             </td>
         </tr>
     <?php endforeach;?>

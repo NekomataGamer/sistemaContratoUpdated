@@ -5,7 +5,7 @@ class Notifications extends Model{
 
         $a = new Admin();
 
-        $sql = "SELECT * FROM notifications limit $limit";
+        $sql = "SELECT * FROM notifications ORDER BY id DESC limit $limit ";
         $sql = $this->db->query($sql);
 
         if($sql->rowCount() > 0){

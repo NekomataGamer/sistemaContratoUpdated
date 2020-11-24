@@ -487,6 +487,18 @@ class Admin extends Model {
         return $array;
     }
 
+    public function getContratosAssinados(){
+        $sql = "SELECT COUNT(*) as c FROM contratos WHERE status_assin = :status_assin";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':status_assin', 2);
+        $sql->execute();
+
+        $c = $sql->fetch();
+        $c['c'];
+
+        return $c;
+    }
+
     public function getContratosNaoAssinados(){
         $sql = "SELECT COUNT(*) as c FROM contratos WHERE status_assin = :status_assin";
         $sql = $this->db->prepare($sql);
