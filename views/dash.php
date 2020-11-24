@@ -98,7 +98,7 @@
         <span class="tx-color-04"><i class="fa fa-eye fa-4x" style="color:blue;"></i></span>
         <div class="media-body mg-l-20">
         <h6 class="mg-b-10">Clique no icone de olho azul na lista acima para visualisar os contratos do cliente.</h6>
-        <p class="tx-color-03 mg-b-0">Você poderá visualisar todos os contratos. Assinados ou não.</p>
+        <p class="tx-color-03 mg-b-0">Você poderá visualisar todos os contratos, assinados ou não.</p>
         </div>
     </div><!-- media -->
     </div>
