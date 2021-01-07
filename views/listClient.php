@@ -28,7 +28,7 @@
       <th scope="col">Nome</th>
       <th scope="col">Empresa</th>
       <th scope="col">E-mail</th>
-      <th scope="col" width='100px'>Ações</th>
+      <th scope="col">Ações</th>
     </tr>
   </thead>
  <tbody>
@@ -43,9 +43,9 @@
             <td><?php echo $dadosEmpresa['nome_fant'];?></td>
             <td><?php echo $item['email'];?></td>
             <td>
-                <a href="<?php echo BASE_URL."adm/addNewContratoToClient/".$item['id'];?>"  title="Novo Contrato"><i style="color:#444;" data-feather="file-plus"></i></a>
-                <a href="<?php echo BASE_URL."adm/editarCliente/".$item['id'];?>"  title="Editar Cliente"><i style="color:#444;" data-feather="edit"></i></a>
-                <a href="<?php echo BASE_URL."adm/excluirCliente/".$item['id'];?>" title="Excluir Cliente"  onclick="return confirm('Deseja mesmo Excluir este cliente?');"><i style="color:#ff0000;" data-feather="trash-2"></i></a>
+                <a href="<?php echo BASE_URL."adm/addNewContratoToClient/".$item['id'];?>" class="btn btn-success">Novo Contrato</a>
+                <a href="<?php echo BASE_URL."adm/editarCliente/".$item['id'];?>" class="btn btn-info">Editar</a>
+                <a href="<?php echo BASE_URL."adm/excluirCliente/".$item['id'];?>" class="btn btn-danger" onclick="return confirm('Deseja mesmo Excluir este cliente?');">Excluir</a>
             </td>
         </tr>
     <?php endforeach;?>

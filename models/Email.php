@@ -32,7 +32,7 @@ class Email extends Model {
         try {
             // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //debugação de codigo util para achar erros
                 $mail->isSMTP();                                            
-                $mail->Host       = 'mail.acu.education';                    
+                $mail->Host       = 'mail.acu.education';        
                 $mail->SMTPAuth   = true;    
                 $mail->SMTPSecure = 'ssl';                               
                 $mail->Username   = 'documents@acu.education';                     

@@ -24,7 +24,7 @@
       <th scope="col">Titulo do Contrato</th>
       <th scope="col">Nome Fantasia</th>
       <th scope="col">CNPJ</th>
-      <th scope="col" width='100px'>Ações</th>
+      <th scope="col">Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -40,8 +40,8 @@
             <td><?php echo $dadosEmpresa['nome_fant'];?></td>
             <td><?php echo $dadosEmpresa['cnpj'];?></td>
             <td>
-                <a href="<?php echo BASE_URL."adm/editarContratoModel/".$item['id'];?>" ><i style="color:#444;" data-feather="edit"></i></a>
-                <a href="<?php echo BASE_URL."adm/excluirContratoModel/".$item['id'];?>"  onclick="return confirm('Deseja mesmo Excluir este Modelo de Contrato?');"><i style="color:#ff0000;" data-feather="trash-2"></i></a>
+                <a href="<?php echo BASE_URL."adm/editarContratoModel/".$item['id'];?>" class="btn btn-info">Editar</a>
+                <a href="<?php echo BASE_URL."adm/excluirContratoModel/".$item['id'];?>" class="btn btn-danger" onclick="return confirm('Deseja mesmo Excluir este Modelo de Contrato?');">Excluir</a>
             </td>
         </tr>
     <?php endforeach;?>
